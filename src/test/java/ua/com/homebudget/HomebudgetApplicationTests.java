@@ -1,4 +1,4 @@
-package homebudget;
+package ua.com.homebudget;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
