@@ -37,17 +37,10 @@ public class User implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "user_role")
-    private Integer userRole;
+    private Role userRole;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Account> accounts;
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private List<Expense> expenses;
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private List<Income> incomes;
-
 
     public Integer getUserId() {
         return this.userId;
@@ -81,11 +74,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Integer getUserRole() {
+    public Role getUserRole() {
         return this.userRole;
     }
 
-    public void setUserRole(Integer userRole) {
+    public void setUserRole(Role userRole) {
         this.userRole = userRole;
     }
 
@@ -95,22 +88,6 @@ public class User implements Serializable {
 
     public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
-    }
-
-    public List<Expense> getExpenses() {
-        return expenses;
-    }
-
-    public void setExpenses(List<Expense> expenses) {
-        this.expenses = expenses;
-    }
-
-    public List<Income> getIncomes() {
-        return incomes;
-    }
-
-    public void setIncomes(List<Income> incomes) {
-        this.incomes = incomes;
     }
 
     @Override

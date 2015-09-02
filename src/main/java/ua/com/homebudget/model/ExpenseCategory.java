@@ -34,10 +34,10 @@ public class ExpenseCategory implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "expense_category")
+    @OneToMany(mappedBy = "parentId")
     private List<ExpenseCategory> children;
 
-    @OneToMany(mappedBy = "expense_category")
+    @OneToMany(mappedBy = "expenseCategory")
     private List<Expense> expenses;
 
     public Integer getCategoryId() {

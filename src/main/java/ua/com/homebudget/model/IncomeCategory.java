@@ -36,10 +36,10 @@ public class IncomeCategory implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "income_category")
+    @OneToMany(mappedBy = "parentId")
     private List<IncomeCategory> children;
 
-    @OneToMany(mappedBy = "income_category")
+    @OneToMany(mappedBy = "incomeCategory")
     private List<Income> incomes;
 
     public Integer getCategoryId() {
