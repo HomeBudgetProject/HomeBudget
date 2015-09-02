@@ -2,7 +2,7 @@ module.exports = function(grunt) {
 
 	grunt.initConfig({
 		jshint: {
-			all: ['src/**/*.js'],
+			all: ['js/**/*.js'],
 			options: {
 				globals: {
 					_: false,
@@ -24,21 +24,21 @@ module.exports = function(grunt) {
 		    		style: 'compressed'
 		    	},
 		    	files: {
-		    		'dist/css/style.css': 'src/scss/main.scss'
+		    		'../static/css/style.css': 'scss/main.scss'
 		    	}
 		    }
 		},
 		concat: {
 			dist: {
-				src: ['bower_components/angular/angular.min.js', 'src/js/*js'],
-				dest: 'dist/js/app.js'
+				src: ['bower_components/angular/angular.min.js', 'js/*js'],
+				dest: '../static/js/app.js'
 			}
 		},
 		sprite:{
 			all : {
-				src: ['src/img/*.png'],
-				destImg: 'dist/img/sprite.png',
-				destCSS: 'src/img/_sprite.scss',
+				src: ['img/*.png'],
+				destImg: '../static/img/sprite.png',
+				destCSS: 'img/_sprite.scss',
 				cssFormat: 'scss'
 			}
 		},
@@ -46,9 +46,9 @@ module.exports = function(grunt) {
 			main: {
 				files: [
 					{
-						cwd: 'src/html/',
+						cwd: 'html/',
 						src: '*',
-						dest: 'dist/',
+						dest: '../static/',
 						expand: true
 					}
 				]
@@ -56,8 +56,8 @@ module.exports = function(grunt) {
 		},
 		concat_css: {
 			all: {
-				src: ['bower_components/bootstrap/dist/css/bootstrap.min.css', 'dist/css/style.css'],
-				dest: "dist/css/style.css"
+				src: ['bower_components/bootstrap/dist/css/bootstrap.min.css', '../static/css/style.css'],
+				dest: "../static/css/style.css"
 			}
 		}
 	});
