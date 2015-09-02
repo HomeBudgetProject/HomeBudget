@@ -5,12 +5,7 @@ CREATE TABLE roles
   role_id integer NOT NULL DEFAULT nextval('id'::regclass),
   name character varying(60) NOT NULL,
   CONSTRAINT roles_pkey PRIMARY KEY (role_id)
-)
-WITH (
-OIDS=FALSE
 );
-ALTER TABLE roles
-OWNER TO dev;
 
 CREATE TABLE users
 (
@@ -24,12 +19,7 @@ CREATE TABLE users
   REFERENCES roles (role_id) MATCH SIMPLE
   ON UPDATE NO ACTION ON DELETE CASCADE,
   CONSTRAINT users_email_key UNIQUE (email)
-)
-WITH (
-OIDS=FALSE
 );
-ALTER TABLE users
-OWNER TO dev;
 
 CREATE TABLE accounts
 (
@@ -40,12 +30,7 @@ CREATE TABLE accounts
   CONSTRAINT users_fkey FOREIGN KEY (user_id)
       REFERENCES users (user_id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE CASCADE
-)
-WITH (
-  OIDS=FALSE
 );
-ALTER TABLE accounts
-OWNER TO dev;
 
 CREATE TABLE expense_categories
 (
@@ -60,12 +45,7 @@ CREATE TABLE expense_categories
   CONSTRAINT users_fkey FOREIGN KEY (user_id)
   REFERENCES users (user_id) MATCH SIMPLE
   ON UPDATE NO ACTION ON DELETE CASCADE
-)
-WITH (
-OIDS=FALSE
 );
-ALTER TABLE expense_categories
-OWNER TO dev;
 
 CREATE TABLE expenses
 (
@@ -82,24 +62,14 @@ CREATE TABLE expenses
   CONSTRAINT categories_fkey FOREIGN KEY (category_id)
       REFERENCES expense_categories (category_id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE CASCADE
-)
-WITH (
-  OIDS=FALSE
 );
-ALTER TABLE expenses
-OWNER TO dev;
 
 CREATE TABLE expense_tags
 (
   tag_id integer NOT NULL DEFAULT nextval('id'::regclass),
   name character varying(60) NOT NULL,
   CONSTRAINT expense_tags_pkey PRIMARY KEY (tag_id)
-)
-WITH (
-OIDS=FALSE
 );
-ALTER TABLE expense_tags
-OWNER TO dev;
 
 CREATE TABLE income_categories
 (
@@ -114,12 +84,7 @@ CREATE TABLE income_categories
   CONSTRAINT users_fkey FOREIGN KEY (user_id)
   REFERENCES users (user_id) MATCH SIMPLE
   ON UPDATE NO ACTION ON DELETE CASCADE
-)
-WITH (
-OIDS=FALSE
 );
-ALTER TABLE income_categories
-OWNER TO dev;
 
 CREATE TABLE incomes
 (
@@ -136,24 +101,14 @@ CREATE TABLE incomes
   CONSTRAINT categories_fkey FOREIGN KEY (category_id)
   REFERENCES income_categories (category_id) MATCH SIMPLE
   ON UPDATE NO ACTION ON DELETE CASCADE
-)
-WITH (
-OIDS=FALSE
 );
-ALTER TABLE incomes
-OWNER TO dev;
 
 CREATE TABLE income_tags
 (
   tag_id integer NOT NULL DEFAULT nextval('id'::regclass),
   name character varying(60) NOT NULL,
   CONSTRAINT income_tags_pkey PRIMARY KEY (tag_id)
-)
-WITH (
-OIDS=FALSE
 );
-ALTER TABLE income_tags
-OWNER TO dev;
 
 CREATE TABLE tags_in_expenses
 (
@@ -166,12 +121,7 @@ CREATE TABLE tags_in_expenses
   CONSTRAINT tags_fkey FOREIGN KEY (tag_id)
   REFERENCES expense_tags (tag_id) MATCH SIMPLE
   ON UPDATE NO ACTION ON DELETE CASCADE
-)
-WITH (
-OIDS=FALSE
 );
-ALTER TABLE tags_in_expenses
-OWNER TO dev;
 
 CREATE TABLE tags_in_incomes
 (
@@ -184,12 +134,7 @@ CREATE TABLE tags_in_incomes
   CONSTRAINT tags_fkey FOREIGN KEY (tag_id)
   REFERENCES income_tags (tag_id) MATCH SIMPLE
   ON UPDATE NO ACTION ON DELETE CASCADE
-)
-WITH (
-OIDS=FALSE
 );
-ALTER TABLE tags_in_incomes
-OWNER TO dev;
 
 CREATE OR REPLACE VIEW account_balances AS
   SELECT accounts.account_id,
@@ -209,6 +154,3 @@ CREATE OR REPLACE VIEW account_balances AS
                        FROM expenses
                        WHERE expenses.datetime <= now()) operations
                 GROUP BY operations.accountid) ops ON ops.accountid = accounts.account_id;
-
-ALTER TABLE account_balances
-OWNER TO dev;
