@@ -1,7 +1,7 @@
 package ua.com.homebudget.model;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 
@@ -12,33 +12,33 @@ import java.math.BigDecimal;
  * @author Bondar Dmytro
  */
 @Entity
-@Table(name="account_balances")
+@Table(name = "account_balances")
 public class AccountBalance implements Serializable {
 
-	private static final long serialVersionUID = -8355490469952552432L;
+    private static final long serialVersionUID = -8355490469952552432L;
 
-	@Id
-	@SequenceGenerator(name="ACCOUNT_ID_GENERATOR", sequenceName="ID")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ACCOUNT_ID_GENERATOR")
-	@Column(name="account_id")
-	private Integer accountId;
+    @Id
+    @SequenceGenerator(name = "ACCOUNT_ID_GENERATOR", sequenceName = "ID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACCOUNT_ID_GENERATOR")
+    @Column(name = "account_id")
+    private Integer accountId;
 
-    @Column(name="user_id")
+    @Column(name = "user_id")
     private Integer userId;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
-	@Column(name="balance")
-	private BigDecimal balance;
+    @Column(name = "balance")
+    private BigDecimal balance;
 
     public Integer getAccountId() {
-		return this.accountId;
-	}
+        return this.accountId;
+    }
 
-	public void setAccountId(Integer accountId) {
-		this.accountId = accountId;
-	}
+    public void setAccountId(Integer accountId) {
+        this.accountId = accountId;
+    }
 
     public Integer getUserId() {
         return this.userId;
@@ -48,13 +48,13 @@ public class AccountBalance implements Serializable {
         this.userId = userId;
     }
 
-	public String getName() {
-		return this.name;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public BigDecimal getBalance() {
         return this.balance;
@@ -86,5 +86,5 @@ public class AccountBalance implements Serializable {
         result = 31 * result + getUserId().hashCode();
         return result;
     }
-	
+
 }

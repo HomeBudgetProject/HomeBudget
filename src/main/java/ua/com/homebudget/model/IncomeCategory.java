@@ -2,8 +2,8 @@ package ua.com.homebudget.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -16,13 +16,13 @@ import java.util.List;
 @Table(name = "income_categories")
 public class IncomeCategory implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@SequenceGenerator(name = "CATEGORY_ID_GENERATOR", sequenceName = "ID")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CATEGORY_ID_GENERATOR")
-	@Column(name = "category_id")
-	private Integer categoryId;
+    @Id
+    @SequenceGenerator(name = "CATEGORY_ID_GENERATOR", sequenceName = "ID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CATEGORY_ID_GENERATOR")
+    @Column(name = "category_id")
+    private Integer categoryId;
 
     @ManyToOne
     @JoinColumn(name = "parent_id")
@@ -34,21 +34,21 @@ public class IncomeCategory implements Serializable {
 
     @NotEmpty
     @Column(name = "name")
-	private String name;
+    private String name;
 
-    @OneToMany(mappedBy="income_category")
+    @OneToMany(mappedBy = "income_category")
     private List<IncomeCategory> children;
 
-    @OneToMany(mappedBy="income_category")
+    @OneToMany(mappedBy = "income_category")
     private List<Income> incomes;
 
-	public Integer getCategoryId() {
-		return this.categoryId;
-	}
+    public Integer getCategoryId() {
+        return this.categoryId;
+    }
 
-	public void setCategoryId(Integer categoryId) {
-		this.categoryId = categoryId;
-	}
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
 
     public IncomeCategory getParentId() {
         return parentId;
@@ -66,13 +66,13 @@ public class IncomeCategory implements Serializable {
         this.user = user;
     }
 
-	public String getName() {
-		return this.name;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public List<IncomeCategory> getChildren() {
         return children;

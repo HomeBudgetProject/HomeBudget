@@ -3,9 +3,9 @@ package ua.com.homebudget.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.*;
 
 
 /**
@@ -15,15 +15,15 @@ import javax.persistence.*;
  * @author Bondar Dmytro
  */
 @Entity
-@Table(name="income_tags")
+@Table(name = "income_tags")
 public class IncomeTag implements Serializable {
 
     private static final long serialVersionUID = -6249092761106522119L;
 
     @Id
-    @SequenceGenerator(name="TAG_ID_GENERATOR", sequenceName="ID")
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TAG_ID_GENERATOR")
-    @Column(name="tag_id")
+    @SequenceGenerator(name = "TAG_ID_GENERATOR", sequenceName = "ID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TAG_ID_GENERATOR")
+    @Column(name = "tag_id")
     private Integer tagId;
 
     @NotEmpty
@@ -32,9 +32,9 @@ public class IncomeTag implements Serializable {
 
     @ManyToMany
     @JoinTable(
-            name="tags_in_incomes",
-            joinColumns={@JoinColumn(name="tag_id", referencedColumnName="tag_id")},
-            inverseJoinColumns={@JoinColumn(name="income_id", referencedColumnName="income_id")})
+            name = "tags_in_incomes",
+            joinColumns = {@JoinColumn(name = "tag_id", referencedColumnName = "tag_id")},
+            inverseJoinColumns = {@JoinColumn(name = "income_id", referencedColumnName = "income_id")})
     private List<Income> incomes;
 
     public Integer getTagId() {

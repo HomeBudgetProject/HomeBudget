@@ -2,8 +2,8 @@ package ua.com.homebudget.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -14,48 +14,48 @@ import java.util.List;
  * @author Bondar Dmytro
  */
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User implements Serializable {
 
-	private static final long serialVersionUID = -8038065705883560945L;
+    private static final long serialVersionUID = -8038065705883560945L;
 
-	@Id
-	@SequenceGenerator(name="USER_ID_GENERATOR", sequenceName="ID")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USER_ID_GENERATOR")
-	@Column(name="user_id")
-	private Integer userId;
+    @Id
+    @SequenceGenerator(name = "USER_ID_GENERATOR", sequenceName = "ID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_ID_GENERATOR")
+    @Column(name = "user_id")
+    private Integer userId;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
-	@Column(name="email", unique = true)
-	private String email;
+    @Column(name = "email", unique = true)
+    private String email;
 
     @NotEmpty
-    @Column(name="password")
-	private String password;
+    @Column(name = "password")
+    private String password;
 
     @ManyToOne
-	@JoinColumn(name="user_role")
-	private Integer userRole;
+    @JoinColumn(name = "user_role")
+    private Integer userRole;
 
-	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)
-	private List<Account> accounts;
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<Account> accounts;
 
-    @OneToMany(mappedBy="user", fetch=FetchType.EAGER)
-	private List<Expense> expenses;
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<Expense> expenses;
 
-    @OneToMany(mappedBy="user", fetch=FetchType.EAGER)
-	private List<Income> incomes;
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<Income> incomes;
 
 
     public Integer getUserId() {
-		return this.userId;
-	}
+        return this.userId;
+    }
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     public String getName() {
         return this.name;
@@ -65,37 +65,37 @@ public class User implements Serializable {
         this.name = name;
     }
 
-	public String getEmail() {
-		return this.email;
-	}
+    public String getEmail() {
+        return this.email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getPassword() {
-		return this.password;
-	}
+    public String getPassword() {
+        return this.password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public Integer getUserRole() {
-		return this.userRole;
-	}
+    public Integer getUserRole() {
+        return this.userRole;
+    }
 
-	public void setUserRole(Integer userRole) {
-		this.userRole = userRole;
-	}
+    public void setUserRole(Integer userRole) {
+        this.userRole = userRole;
+    }
 
-	public List<Account> getAccounts() {
-		return this.accounts;
-	}
+    public List<Account> getAccounts() {
+        return this.accounts;
+    }
 
-	public void setAccounts(List<Account> accounts) {
-		this.accounts = accounts;
-	}
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
 
     public List<Expense> getExpenses() {
         return expenses;
