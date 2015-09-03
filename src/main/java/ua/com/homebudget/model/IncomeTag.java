@@ -1,6 +1,7 @@
 package ua.com.homebudget.model;
 
 
+import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import java.util.Set;
  * @author Stefansky Alex
  * @author Bondar Dmytro
  */
+@Data
 @Entity
 @Table(name = "income_tags")
 public class IncomeTag implements Serializable {

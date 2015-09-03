@@ -1,5 +1,7 @@
 package ua.com.homebudget.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
@@ -11,6 +13,7 @@ import java.util.Set;
  * @author Stefansky Alex
  * @author Bondar Dmytro
  */
+@Data
 @Entity
 @Table(name = "expense_categories")
 public class ExpenseCategory implements Serializable {
@@ -40,74 +43,4 @@ public class ExpenseCategory implements Serializable {
     @OneToMany(mappedBy = "expenseCategory")
     private Set<Expense> expenses;
 
-    public Integer getCategoryId() {
-        return this.categoryId;
-    }
-
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public ExpenseCategory getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(ExpenseCategory parentId) {
-        this.parentId = parentId;
-    }
-
-    public User getUser() {
-        return this.user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<ExpenseCategory> getChildren() {
-        return children;
-    }
-
-    public void setChildren(Set<ExpenseCategory> children) {
-        this.children = children;
-    }
-
-    public Set<Expense> getExpenses() {
-        return expenses;
-    }
-
-    public void setExpenses(Set<Expense> expenses) {
-        this.expenses = expenses;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ExpenseCategory)) return false;
-
-        ExpenseCategory that = (ExpenseCategory) o;
-
-        if (!getCategoryId().equals(that.getCategoryId())) return false;
-        if (!getName().equals(that.getName())) return false;
-        if (!getUser().equals(that.getUser())) return false;
-        return !(getParentId() != null ? !getParentId().equals(that.getParentId()) : that.getParentId() != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getCategoryId().hashCode();
-        result = 31 * result + getName().hashCode();
-        result = 31 * result + getUser().hashCode();
-        result = 31 * result + (getParentId() != null ? getParentId().hashCode() : 0);
-        return result;
-    }
 }

@@ -1,5 +1,6 @@
 package ua.com.homebudget.model;
 
+import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import java.util.Set;
  * @author Stefansky Alex
  * @author Bondar Dmytro
  */
+@Data
 @Entity
 @Table(name = "expense_tags")
 public class ExpenseTag implements Serializable {
@@ -34,59 +36,5 @@ public class ExpenseTag implements Serializable {
             joinColumns = {@JoinColumn(name = "tag_id", referencedColumnName = "tag_id")},
             inverseJoinColumns = {@JoinColumn(name = "expense_id", referencedColumnName = "expense_id")})
     private Set<Expense> expenses;
-
-    public Integer getTagId() {
-        return this.tagId;
-    }
-
-    public void setTagId(Integer tagId) {
-        this.tagId = tagId;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<Expense> getExpenses() {
-        return expenses;
-    }
-
-    public void setExpenses(Set<Expense> expenses) {
-        this.expenses = expenses;
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((tagId == null) ? 0 : tagId.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        ExpenseTag other = (ExpenseTag) obj;
-        if (tagId == null) {
-            if (other.tagId != null) {
-                return false;
-            }
-        } else if (!tagId.equals(other.tagId)) {
-            return false;
-        }
-        return true;
-    }
 
 }

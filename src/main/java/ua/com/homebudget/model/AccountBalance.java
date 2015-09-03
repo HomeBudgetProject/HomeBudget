@@ -1,5 +1,7 @@
 package ua.com.homebudget.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -11,6 +13,7 @@ import java.math.BigDecimal;
  * @author Stefansky Alex
  * @author Bondar Dmytro
  */
+@Data
 @Entity
 @Table(name = "account_balances")
 public class AccountBalance implements Serializable {

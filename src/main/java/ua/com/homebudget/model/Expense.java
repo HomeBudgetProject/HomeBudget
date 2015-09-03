@@ -1,5 +1,6 @@
 package ua.com.homebudget.model;
 
+import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ import java.util.Set;
  * @author Stefansky Alex
  * @author Bondar Dmytro
  */
+@Data
 @Entity
 @Table(name = "expenses")
 public class Expense implements Serializable {
@@ -53,88 +55,5 @@ public class Expense implements Serializable {
             joinColumns = {@JoinColumn(name = "expense_id", referencedColumnName = "expense_id")},
             inverseJoinColumns = {@JoinColumn(name = "tag_id", referencedColumnName = "tag_id")})
     private Set<ExpenseTag> expenseTags;
-
-    public Integer getExpenseId() {
-        return this.expenseId;
-    }
-
-    public void setExpenseId(Integer expenseId) {
-        this.expenseId = expenseId;
-    }
-
-    public Account getAccount() {
-        return this.account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
-    public ExpenseCategory getExpenseCategory() {
-        return this.expenseCategory;
-    }
-
-    public void setExpenseCategory(ExpenseCategory expenseCategory) {
-        this.expenseCategory = expenseCategory;
-    }
-
-    public Timestamp getDatetime() {
-        return this.datetime;
-    }
-
-    public void setDatetime(Timestamp datetime) {
-        this.datetime = datetime;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public BigDecimal getValue() {
-        return this.value;
-    }
-
-    public void setValue(BigDecimal value) {
-        this.value = value;
-    }
-
-    public Set<ExpenseTag> getExpenseTags() {
-        return this.expenseTags;
-    }
-
-    public void setExpenseTags(Set<ExpenseTag> expenseTags) {
-        this.expenseTags = expenseTags;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Expense)) return false;
-
-        Expense expense = (Expense) o;
-
-        if (!getExpenseId().equals(expense.getExpenseId())) return false;
-        if (!getDatetime().equals(expense.getDatetime())) return false;
-        if (getName() != null ? !getName().equals(expense.getName()) : expense.getName() != null) return false;
-        if (getValue() != null ? !getValue().equals(expense.getValue()) : expense.getValue() != null) return false;
-        if (!getAccount().equals(expense.getAccount())) return false;
-        return getExpenseCategory().equals(expense.getExpenseCategory());
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getExpenseId().hashCode();
-        result = 31 * result + getDatetime().hashCode();
-        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
-        result = 31 * result + (getValue() != null ? getValue().hashCode() : 0);
-        result = 31 * result + getAccount().hashCode();
-        result = 31 * result + getExpenseCategory().hashCode();
-        return result;
-    }
 
 }

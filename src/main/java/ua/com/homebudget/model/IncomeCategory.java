@@ -1,5 +1,6 @@
 package ua.com.homebudget.model;
 
+import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import java.util.Set;
  * @author Stefansky Alex
  * @author Bondar Dmytro
  */
+@Data
 @Entity
 @Table(name = "income_categories")
 public class IncomeCategory implements Serializable {
@@ -42,74 +44,4 @@ public class IncomeCategory implements Serializable {
     @OneToMany(mappedBy = "incomeCategory")
     private Set<Income> incomes;
 
-    public Integer getCategoryId() {
-        return this.categoryId;
-    }
-
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public IncomeCategory getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(IncomeCategory parentId) {
-        this.parentId = parentId;
-    }
-
-    public User getUser() {
-        return this.user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<IncomeCategory> getChildren() {
-        return children;
-    }
-
-    public void setChildren(Set<IncomeCategory> children) {
-        this.children = children;
-    }
-
-    public Set<Income> getIncomes() {
-        return incomes;
-    }
-
-    public void setIncomes(Set<Income> incomes) {
-        this.incomes = incomes;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof IncomeCategory)) return false;
-
-        IncomeCategory that = (IncomeCategory) o;
-
-        if (!getCategoryId().equals(that.getCategoryId())) return false;
-        if (!getName().equals(that.getName())) return false;
-        if (!getUser().equals(that.getUser())) return false;
-        return !(getParentId() != null ? !getParentId().equals(that.getParentId()) : that.getParentId() != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getCategoryId().hashCode();
-        result = 31 * result + getName().hashCode();
-        result = 31 * result + getUser().hashCode();
-        result = 31 * result + (getParentId() != null ? getParentId().hashCode() : 0);
-        return result;
-    }
 }
