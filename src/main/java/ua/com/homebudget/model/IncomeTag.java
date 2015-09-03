@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -35,6 +35,48 @@ public class IncomeTag implements Serializable {
             name = "tags_in_incomes",
             joinColumns = {@JoinColumn(name = "tag_id", referencedColumnName = "tag_id")},
             inverseJoinColumns = {@JoinColumn(name = "income_id", referencedColumnName = "income_id")})
-    private List<Income> incomes;
+    private Set<Income> incomes;
 
+    public Integer getTagId() {
+        return this.tagId;
+    }
+
+    public void setTagId(Integer tagId) {
+        this.tagId = tagId;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<Income> getIncomes() {
+        return incomes;
+    }
+
+    public void setIncomes(Set<Income> incomes) {
+        this.incomes = incomes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof IncomeTag)) return false;
+
+        IncomeTag incomeTag = (IncomeTag) o;
+
+        if (!getTagId().equals(incomeTag.getTagId())) return false;
+        return getName().equals(incomeTag.getName());
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getTagId().hashCode();
+        result = 31 * result + getName().hashCode();
+        return result;
+    }
 }
