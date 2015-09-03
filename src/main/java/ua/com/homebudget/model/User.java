@@ -4,7 +4,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 
 /**
@@ -39,8 +38,8 @@ public class User implements Serializable {
     @JoinColumn(name = "user_role")
     private Role userRole;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private List<Account> accounts;
+//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+//    private List<Account> accounts;
 
     public Integer getUserId() {
         return this.userId;
@@ -81,39 +80,39 @@ public class User implements Serializable {
     public void setUserRole(Role userRole) {
         this.userRole = userRole;
     }
+//
+//    public List<Account> getAccounts() {
+//        return this.accounts;
+//    }
+//
+//    public void setAccounts(List<Account> accounts) {
+//        this.accounts = accounts;
+//    }
 
-    public List<Account> getAccounts() {
-        return this.accounts;
-    }
-
-    public void setAccounts(List<Account> accounts) {
-        this.accounts = accounts;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof User)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         User user = (User) o;
 
-        if (!getUserId().equals(user.getUserId())) return false;
-        if (!getEmail().equals(user.getEmail())) return false;
-        if (getName() != null ? !getName().equals(user.getName()) : user.getName() != null) return false;
-        if (!getPassword().equals(user.getPassword())) return false;
-        if (!getUserRole().equals(user.getUserRole())) return false;
-        return !(getAccounts() != null ? !getAccounts().equals(user.getAccounts()) : user.getAccounts() != null);
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
+        if (name != null ? !name.equals(user.name) : user.name != null) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (userId != null ? !userId.equals(user.userId) : user.userId != null) return false;
+        if (userRole != null ? !userRole.equals(user.userRole) : user.userRole != null) return false;
 
+        return true;
     }
 
     @Override
     public int hashCode() {
-        int result = getUserId().hashCode();
-        result = 31 * result + getEmail().hashCode();
-        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
-        result = 31 * result + getPassword().hashCode();
-        result = 31 * result + getUserRole().hashCode();
-        result = 31 * result + (getAccounts() != null ? getAccounts().hashCode() : 0);
+        int result = userId != null ? userId.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (userRole != null ? userRole.hashCode() : 0);
         return result;
     }
 }
