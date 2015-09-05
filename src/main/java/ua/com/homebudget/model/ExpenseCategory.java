@@ -1,6 +1,8 @@
 package ua.com.homebudget.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,6 +18,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "expense_categories")
+@EqualsAndHashCode(exclude = {"children", "expenses"})
 public class ExpenseCategory implements Serializable {
 
     private static final long serialVersionUID = 1471057802834876618L;
@@ -37,9 +40,11 @@ public class ExpenseCategory implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "parentId")
     private Set<ExpenseCategory> children;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "expenseCategory")
     private Set<Expense> expenses;
 

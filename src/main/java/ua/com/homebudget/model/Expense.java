@@ -1,6 +1,8 @@
 package ua.com.homebudget.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -20,6 +22,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "expenses")
+@EqualsAndHashCode(exclude = {"expenseTags"})
 public class Expense implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -49,6 +52,7 @@ public class Expense implements Serializable {
     @Column(name = "value")
     private BigDecimal value;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "tags_in_incomes",

@@ -1,10 +1,13 @@
 package ua.com.homebudget.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 
 /**
@@ -16,6 +19,7 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name = "users")
+@EqualsAndHashCode(exclude = {"accounts"})
 public class User implements Serializable {
 
     private static final long serialVersionUID = -8038065705883560945L;
@@ -40,7 +44,8 @@ public class User implements Serializable {
     @JoinColumn(name = "user_role")
     private Role userRole;
 
-    //@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    // private Set<Account> accounts;
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<Account> accounts;
 
 }

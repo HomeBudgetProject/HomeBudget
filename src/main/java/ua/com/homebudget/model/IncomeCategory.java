@@ -1,6 +1,8 @@
 package ua.com.homebudget.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -16,6 +18,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "income_categories")
+@EqualsAndHashCode(exclude = {"incomes", "children"})
 public class IncomeCategory implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -38,9 +41,11 @@ public class IncomeCategory implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "parentId")
     private Set<IncomeCategory> children;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "incomeCategory")
     private Set<Income> incomes;
 
