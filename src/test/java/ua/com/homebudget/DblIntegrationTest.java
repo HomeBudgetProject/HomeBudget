@@ -1,6 +1,7 @@
 package ua.com.homebudget;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
@@ -20,5 +21,6 @@ import ua.com.homebudget.configuration.TestAppConfiguration;
         DbUnitTestExecutionListener.class})
 @ActiveProfiles(profiles = "test")
 @WebAppConfiguration
+@Ignore
 public class DblIntegrationTest {
 }

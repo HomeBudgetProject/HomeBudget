@@ -2,6 +2,8 @@ package ua.com.homebudget.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ua.com.homebudget.dto.UserRequest;
+import ua.com.homebudget.exception.UserServiceException;
 import ua.com.homebudget.model.User;
 import ua.com.homebudget.repository.UserRepository;
 import ua.com.homebudget.service.UserService;
@@ -20,6 +22,18 @@ public class UserServiceDefault implements UserService {
 
     public User getUser(Integer id) {
         return userRepository.findOne(id);
+    }
+
+    @Override
+    public void register(UserRequest request) {
+        User user = userRepository.findByEmail(request.getEmail());
+        if (user != null) {
+            throw new UserServiceException("This email is already taken");
+        }
+        user = new User();
+        user.setEmail(request.getEmail());
+        user.setPassword(request.getPassword());
+        userRepository.save(user);
     }
 
 }

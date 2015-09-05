@@ -5,7 +5,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 
 /**
@@ -41,7 +40,7 @@ public class User implements Serializable {
     @JoinColumn(name = "user_role")
     private Role userRole;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private Set<Account> accounts;
+    //@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    // private Set<Account> accounts;
 
 }
