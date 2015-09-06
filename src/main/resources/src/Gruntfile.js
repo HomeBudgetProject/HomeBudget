@@ -36,9 +36,9 @@ module.exports = function(grunt) {
 		},
 		sprite:{
 			all : {
-				src: ['img/*.png'],
+				src: ['img/sprite/*.png'],
 				destImg: '../static/img/sprite.png',
-				destCSS: 'img/_sprite.scss',
+				destCSS: 'scss/_sprite.scss',
 				cssFormat: 'scss'
 			}
 		},
@@ -49,6 +49,12 @@ module.exports = function(grunt) {
 						cwd: 'html/',
 						src: '*',
 						dest: '../static/',
+						expand: true
+					},
+					{
+						cwd: 'img/static/',
+						src: ['*.png', '*.jpg'],
+						dest: '../static/img/',
 						expand: true
 					}
 				]
@@ -69,6 +75,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-concat-css');
 
-	grunt.registerTask('default', ['jshint', 'sass', 'concat', 'sprite', 'copy', 'concat_css']);
+	grunt.registerTask('default', ['jshint', 'sprite', 'sass', 'concat', 'copy', 'concat_css']);
 
 };

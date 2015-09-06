@@ -1,0 +1,77 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+*/
+$ico-settings-x: 0px;
+$ico-settings-y: 0px;
+$ico-settings-offset-x: 0px;
+$ico-settings-offset-y: 0px;
+$ico-settings-width: 20px;
+$ico-settings-height: 20px;
+$ico-settings-total-width: 20px;
+$ico-settings-total-height: 60px;
+$ico-settings-image: '../../static/img/sprite.png';
+$ico-settings: 0px 0px 0px 0px 20px 20px 20px 60px '../../static/img/sprite.png';
+$ico-statistics-x: 0px;
+$ico-statistics-y: 20px;
+$ico-statistics-offset-x: 0px;
+$ico-statistics-offset-y: -20px;
+$ico-statistics-width: 20px;
+$ico-statistics-height: 20px;
+$ico-statistics-total-width: 20px;
+$ico-statistics-total-height: 60px;
+$ico-statistics-image: '../../static/img/sprite.png';
+$ico-statistics: 0px 20px 0px -20px 20px 20px 20px 60px '../../static/img/sprite.png';
+$ico-transactions-x: 0px;
+$ico-transactions-y: 40px;
+$ico-transactions-offset-x: 0px;
+$ico-transactions-offset-y: -40px;
+$ico-transactions-width: 20px;
+$ico-transactions-height: 20px;
+$ico-transactions-total-width: 20px;
+$ico-transactions-total-height: 60px;
+$ico-transactions-image: '../../static/img/sprite.png';
+$ico-transactions: 0px 40px 0px -40px 20px 20px 20px 60px '../../static/img/sprite.png';
+
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
