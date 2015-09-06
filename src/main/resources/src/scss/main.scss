@@ -80,11 +80,7 @@ A {
 	&__mail {
 		float: left;
 	    margin-left: 30px;
-		
-		SPAN {
 
-
-		}
 	}
 }
 
@@ -120,5 +116,35 @@ A {
 			@include sprite($ico-settings);
 
 		}
+	}
+}
+
+.auth {
+	min-height: 600px;
+	float: none;
+	
+	&__logo {
+		margin-bottom: 30px;
+		text-align: center;
+
+		IMG {
+			width: 200px;
+
+		}
+	}
+
+	&__form {
+		margin-bottom: 30px;
+
+	}
+
+	FIELDSET {
+		text-align: center;
+    	margin-bottom: 10px;
+
+    	BUTTON {
+
+    		margin-top: 50px;
+    	}
 	}
 }
