@@ -62,7 +62,8 @@ crashlytics-build.properties
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-#hide node and bower libraries
+#hide node, bower, static libraries
 /src/main/resources/src/bower_components/
 /src/main/resources/src/node_modules/
 /src/main/resources/src/.sass-cache/
+/src/main/resources/static/
