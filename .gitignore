@@ -67,3 +67,6 @@ hs_err_pid*
 /src/main/resources/src/node_modules/
 /src/main/resources/src/.sass-cache/
 /src/main/resources/static/
+
+#ignore scss sprite file
+/src/main/resources/src/scss/_sprite.scss
