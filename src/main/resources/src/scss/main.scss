@@ -5,7 +5,8 @@ $blue: #78FFF5;
 $green: #7FE878;
 $green-light: #67E8B4;
 $gray: #BEC4C5;
-$content: #929FA3;
+$content: #222627;
+$red: #d9534f;
 
 html {
 	height: 100%;
@@ -37,6 +38,13 @@ A {
 	&:hover {
 		text-decoration: none;
 	}
+}
+
+H2 {
+	color: $content;
+	font-size: 20px;
+	margin: 0;
+
 }
 
 .b-page {
@@ -146,5 +154,88 @@ A {
 
     		margin-top: 50px;
     	}
+	}
+}
+
+.transaction {
+
+	textarea {
+		width: 83%;
+	    margin-right: 44px;
+		padding: 10px;
+		height: 112px;
+		display: inline-block;
+		vertical-align: bottom;
+
+	}
+	
+	&__header {
+		background: $green;
+		padding: 10px 15px;
+
+	}
+
+	&__sum {
+		
+		fieldset {
+			display: inline-block;
+			width: 50px;
+		    text-align: left;
+
+			.btn {
+				width: 34px;
+				height: 34px;
+
+				&:first-child {
+					margin-bottom: 10px;
+
+				}
+			}
+		}
+	}
+
+	&__amount {
+		border: 1px solid #ccc;
+		padding: 15px;
+		color: $red;
+		display: inline-block;
+		width: 90px;
+		height: 79px;
+		vertical-align: top;
+		font-size: 31px;
+
+	}
+
+	&__info {
+		
+		.btn {
+			color: #fff;
+			font-size: 22px;
+			text-align: center;
+			padding: 0px 20px;
+
+		}
+	}
+
+	&__additional, &__calendar, &__sum {
+		margin: 20px 20px 20px 0;
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	&__additional {
+		width: 59%;
+
+	}
+
+	&__calendar {
+		padding-left: 40px;
+		margin: 20px 0;
+
+		.btn {
+			padding: 0px 10px;
+			font-size: 22px;	
+
+		}
 	}
 }
