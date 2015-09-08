@@ -14,9 +14,16 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-
+		<webapp.root.dir>${basedir}/src/main/resources/src</webapp.root.dir>
 		<spring.boot.version>1.2.5.RELEASE</spring.boot.version>
 		<hibernate.version>4.3.11.Final</hibernate.version>
+
+		<database.url>jdbc:postgresql://hb.cn9daxuwzkia.eu-west-1.rds.amazonaws.com:5432/</database.url>
+		<database.schema.name>dev</database.schema.name>
+		<database.username>dev</database.username>
+		<database.password>rf2NM4DR9GMUHBqT</database.password>
+		<database.hibernate.dialect>org.hibernate.dialect.PostgreSQL9Dialect</database.hibernate.dialect>
+		<database.driver.classname>org.postgresql.Driver</database.driver.classname>
 	</properties>
 
 	<dependencies>
@@ -131,32 +138,153 @@
 			</exclusions>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>src/**</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>*.properties</include>
+				</includes>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring.boot.version}</version>
+				<configuration>
+					<addResources>false</addResources>
+					<executable>true</executable>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.flywaydb</groupId>
 				<artifactId>flyway-maven-plugin</artifactId>
 				<version>3.2.1</version>
 				<configuration>
-					<url>jdbc:postgresql://hb.cn9daxuwzkia.eu-west-1.rds.amazonaws.com:5432/dev</url>
-					<user>dev</user>
-                    <password>rf2NM4DR9GMUHBqT</password>
+					<url>${database.url}${database.schema.name}</url>
+					<user>${database.username}</user>
+					<password>${database.password}</password>
 				</configuration>
 				<dependencies>
 					<dependency>
-                        <groupId>org.postgresql</groupId>
-                        <artifactId>postgresql</artifactId>
-                        <version>9.4-1201-jdbc41</version>
+						<groupId>org.postgresql</groupId>
+						<artifactId>postgresql</artifactId>
+						<version>9.4-1201-jdbc41</version>
 					</dependency>
 				</dependencies>
 			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<configuration>
+					<formats>
+						<format>html</format>
+						<format>xml</format>
+					</formats>
+				</configuration>
+			</plugin>
 		</plugins>
-	</build>
-	
 
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>2.3</version>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<database.schema.name>dev</database.schema.name>
+				<database.username>dev</database.username>
+				<database.password>rf2NM4DR9GMUHBqT</database.password>
+			</properties>
+		</profile>
+		<profile>
+			<id>test</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<database.schema.name>test</database.schema.name>
+				<database.username>qa</database.username>
+				<database.password>CNJqX4dDS4f7tUWr</database.password>
+			</properties>
+		</profile>
+		<profile>
+			<id>front</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>exec-npm-install</id>
+								<phase>generate-sources</phase>
+								<configuration>
+									<executable>npm</executable>
+									<workingDirectory>${webapp.root.dir}</workingDirectory>	            
+									<arguments>
+										<argument>install</argument>
+									</arguments>
+								</configuration>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>exec-bower-install</id>
+								<phase>generate-sources</phase>
+								<configuration>
+									<workingDirectory>${webapp.root.dir}</workingDirectory>	            
+									<executable>bower</executable>
+									<arguments>
+										<argument>install</argument>
+									</arguments>
+								</configuration>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>exec-grunt</id>
+								<phase>process-resources</phase>
+								<configuration>
+									<workingDirectory>${webapp.root.dir}</workingDirectory>	            
+									<executable>grunt</executable>
+								</configuration>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+	</profiles>
 </project>

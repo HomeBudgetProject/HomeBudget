@@ -42,6 +42,18 @@ out/
 # JIRA plugin
 atlassian-ide-plugin.xml
 
+#=== Eclipse ===
+target/**
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+local.properties
+.classpath
+.settings/
+.loadpath
+
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
 crashlytics.properties
