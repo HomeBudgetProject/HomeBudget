@@ -37,7 +37,7 @@ public class IncomeTag implements Serializable {
     private String name;
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "tags_in_incomes",
             joinColumns = {@JoinColumn(name = "tag_id", referencedColumnName = "tag_id")},

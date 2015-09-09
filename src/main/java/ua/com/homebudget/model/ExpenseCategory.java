@@ -29,11 +29,12 @@ public class ExpenseCategory implements Serializable {
     @Column(name = "category_id")
     private Integer categoryId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private ExpenseCategory parentId;
 
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -41,11 +42,11 @@ public class ExpenseCategory implements Serializable {
     private String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "parentId")
+    @OneToMany(mappedBy = "parentId", fetch = FetchType.LAZY)
     private Set<ExpenseCategory> children;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "expenseCategory")
+    @OneToMany(mappedBy = "expenseCategory", fetch = FetchType.LAZY)
     private Set<Expense> expenses;
 
 }

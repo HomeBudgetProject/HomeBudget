@@ -34,7 +34,7 @@ public class Role implements Serializable {
     private String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "userRole")
+    @OneToMany(mappedBy = "userRole", fetch = FetchType.LAZY)
     private Set<User> users;
 
 }

@@ -32,11 +32,11 @@ public class Expense implements Serializable {
     @Column(name = "expense_id")
     private Integer expenseId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_Id")
     private Account account;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private ExpenseCategory expenseCategory;
 
@@ -53,7 +53,7 @@ public class Expense implements Serializable {
     private BigDecimal value;
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "tags_in_incomes",
             joinColumns = {@JoinColumn(name = "expense_id", referencedColumnName = "expense_id")},

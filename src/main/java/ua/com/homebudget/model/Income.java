@@ -33,11 +33,11 @@ public class Income implements Serializable {
     @Column(name = "income_id")
     private Integer incomeId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id")
     private Account account;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private IncomeCategory incomeCategory;
 
@@ -53,7 +53,7 @@ public class Income implements Serializable {
     private BigDecimal value;
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "tags_in_incomes",
             joinColumns = {@JoinColumn(name = "income_id", referencedColumnName = "income_id")},
