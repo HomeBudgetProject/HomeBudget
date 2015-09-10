@@ -1,6 +1,7 @@
 <dataset>
 
     <roles role_id="1" name="admin"/>
+    <roles role_id="2" name="user"/>
     <users user_id="1" name="Viacheslav" email="some@mail.com" password="pass123" user_role="1"/>
-
+    <users user_id="2" name="Petro" email="test2@mail.com" password="pass222" user_role="2"/>
 </dataset>

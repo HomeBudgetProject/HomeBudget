@@ -36,4 +36,12 @@ public class UserServiceDefault implements UserService {
         userRepository.save(user);
     }
 
+    @Override
+    public void deleteUser(Integer id) {
+        if (getUser(id) == null) {
+            throw new UserServiceException("User not found");
+        }
+        userRepository.delete(id);
+    }
+
 }

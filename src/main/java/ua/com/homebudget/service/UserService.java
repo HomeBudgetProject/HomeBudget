@@ -10,5 +10,6 @@ public interface UserService {
     public List<User> getUsers();
     public User getUser(Integer id);
     public void register(UserRequest request);
+    public void deleteUser(Integer id);
 
 }
