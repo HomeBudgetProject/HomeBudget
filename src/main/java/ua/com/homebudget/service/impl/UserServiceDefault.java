@@ -24,7 +24,6 @@ public class UserServiceDefault implements UserService {
         return userRepository.findOne(id);
     }
 
-    @Override
     public void register(UserRequest request) {
         User user = userRepository.findByEmail(request.getEmail());
         if (user != null) {
