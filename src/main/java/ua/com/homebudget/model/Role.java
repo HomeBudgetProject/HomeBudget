@@ -30,7 +30,7 @@ public class Role implements Serializable {
     private Integer roleId;
 
     @NotEmpty
-    @Column(name = "name")
+    @Column(name = "name", unique = true)
     private String name;
 
     @JsonIgnore

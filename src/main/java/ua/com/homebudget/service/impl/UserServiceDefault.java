@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import ua.com.homebudget.dto.UserRequest;
 import ua.com.homebudget.exception.UserServiceException;
 import ua.com.homebudget.model.User;
+import ua.com.homebudget.repository.RoleRepository;
 import ua.com.homebudget.repository.UserRepository;
 import ua.com.homebudget.service.UserService;
 
@@ -16,6 +17,9 @@ public class UserServiceDefault implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
     public List<User> getUsers() {
         return userRepository.findAll();
     }
@@ -25,6 +29,21 @@ public class UserServiceDefault implements UserService {
     }
 
     public void register(UserRequest request) {
+        if (request.getEmail().trim().length() == 0) {
+            throw new UserServiceException("Can't add empty email");
+        }
+        if (request.getPassword().trim().length() == 0) {
+            throw new UserServiceException("Can't add empty password");
+        }
+        if (request.getEmail().trim().length() > 60) {
+            throw new UserServiceException("Email is too large. Length is " + request.getEmail().trim().length() + ".  Max length is 60.");
+        }
+        if (request.getPassword().trim().length() > 100) {
+            throw new UserServiceException("Password is too large. Max length is 100.");
+        }
+        if (!request.getEmail().trim().contains("@")) {
+            throw new UserServiceException("Email is not have '@' letter");
+        }
         User user = userRepository.findByEmail(request.getEmail());
         if (user != null) {
             throw new UserServiceException("This email is already taken");
@@ -32,6 +51,7 @@ public class UserServiceDefault implements UserService {
         user = new User();
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
+        user.setUserRole(roleRepository.findByName("user"));
         userRepository.save(user);
     }
 

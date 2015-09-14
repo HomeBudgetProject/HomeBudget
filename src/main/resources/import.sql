@@ -154,3 +154,6 @@ CREATE OR REPLACE VIEW account_balances AS
                        FROM expenses
                        WHERE expenses.datetime <= now()) operations
                 GROUP BY operations.accountid) ops ON ops.accountid = accounts.account_id;
+
+insert into roles(name) values('Administrator');
+insert into roles(name) values('User');
