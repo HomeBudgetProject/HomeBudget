@@ -12,6 +12,8 @@
 	<description>Homebudget - finance manager</description>
 
 	<properties>
+		<build.number>${maven.build.timestamp}</build.number>
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<webapp.root.dir>${basedir}/src/main/resources/src</webapp.root.dir>
