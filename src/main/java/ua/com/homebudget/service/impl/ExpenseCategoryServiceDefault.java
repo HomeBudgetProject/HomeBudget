@@ -71,10 +71,10 @@ public class ExpenseCategoryServiceDefault implements ExpenseCategoryService {
     }
 
     public List<ExpenseCategory> getUsersCategory(Integer id) {
-        return categoryRepository.findByUser_UserId(id);
+        return categoryRepository.findByUserUserId(id);
     }
 
     public List<ExpenseCategory> getChildesCategory(Integer id) {
-        return categoryRepository.findByParentId_CategoryId(id);
+        return categoryRepository.findByParentIdCategoryId(id);
     }
 }

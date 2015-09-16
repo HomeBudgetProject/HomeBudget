@@ -88,12 +88,12 @@ public class ExpenseCategoryServiceTest extends DblIntegrationTest {
 
     @Test()
     public void testGetUserCategories() throws Exception {
-        Assert.assertEquals(repository.findByUser_UserId(1), service.getUsersCategory(1));
+        Assert.assertEquals(repository.findByUserUserId(1), service.getUsersCategory(1));
     }
 
     @Test()
     public void testGetChildesCategories() throws Exception {
-        Assert.assertEquals(repository.findByParentId_CategoryId(1), service.getChildesCategory(1));
+        Assert.assertEquals(repository.findByParentIdCategoryId(1), service.getChildesCategory(1));
     }
 
     @Test()

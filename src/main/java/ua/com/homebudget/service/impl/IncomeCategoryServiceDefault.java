@@ -71,10 +71,10 @@ public class IncomeCategoryServiceDefault implements IncomeCategoryService {
     }
 
     public List<IncomeCategory> getUsersCategory(Integer id) {
-        return categoryRepository.findByUser_UserId(id);
+        return categoryRepository.findByUserUserId(id);
     }
 
     public List<IncomeCategory> getChildesCategory(Integer id) {
-        return categoryRepository.findByParentId_CategoryId(id);
+        return categoryRepository.findByParentIdCategoryId(id);
     }
 }
