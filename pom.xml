@@ -216,6 +216,9 @@
 	<profiles>
 		<profile>
 			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<properties>
 				<database.schema.name>dev</database.schema.name>
 				<database.username>dev</database.username>
@@ -224,9 +227,6 @@
 		</profile>
 		<profile>
 			<id>test</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 			<properties>
 				<database.schema.name>test</database.schema.name>
 				<database.username>qa</database.username>
