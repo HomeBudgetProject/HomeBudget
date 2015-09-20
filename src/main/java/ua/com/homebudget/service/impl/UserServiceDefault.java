@@ -29,19 +29,21 @@ public class UserServiceDefault implements UserService {
     }
 
     public void register(UserRequest request) {
-        if (request.getEmail().trim().length() == 0) {
+        request.setEmail(request.getEmail().trim());
+        request.setPassword(request.getPassword().trim());
+        if (request.getEmail().length() == 0) {
             throw new UserServiceException("Can't add empty email");
         }
-        if (request.getPassword().trim().length() == 0) {
+        if (request.getPassword().length() == 0) {
             throw new UserServiceException("Can't add empty password");
         }
-        if (request.getEmail().trim().length() > 60) {
+        if (request.getEmail().length() > 60) {
             throw new UserServiceException("Email is too large. Length is " + request.getEmail().trim().length() + ".  Max length is 60.");
         }
-        if (request.getPassword().trim().length() > 100) {
+        if (request.getPassword().length() > 100) {
             throw new UserServiceException("Password is too large. Max length is 100.");
         }
-        if (!request.getEmail().trim().contains("@")) {
+        if (!request.getEmail().contains("@")) {
             throw new UserServiceException("Email is not have '@' letter");
         }
         User user = userRepository.findByEmail(request.getEmail());

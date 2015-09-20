@@ -60,6 +60,32 @@ public class UserServiceTest extends DblIntegrationTest {
         userService.register(request);
     }
 
+    @Test()
+    public void testRegisterWithSpaceEmail() throws Exception {
+        Integer usersSize = userRepository.findAll().size();
+        UserRequest request = new UserRequest();
+        request.setEmail("dfghj@sdfgh.dfg ");
+        request.setPassword("54");
+        userService.register(request);
+        User user = userRepository.findByEmail("dfghj@sdfgh.dfg");
+        Assert.assertEquals(usersSize + 1, userRepository.findAll().size());
+        Assert.assertEquals("dfghj@sdfgh.dfg", user.getEmail());
+        Assert.assertNotNull(user.getUserRole());
+    }
+
+    @Test()
+    public void testRegisterWithSpacePassword() throws Exception {
+        Integer usersSize = userRepository.findAll().size();
+        UserRequest request = new UserRequest();
+        request.setEmail("dfghj@sdfgh.dfg");
+        request.setPassword(" 156");
+        userService.register(request);
+        User user = userRepository.findByEmail(request.getEmail());
+        Assert.assertEquals(usersSize + 1, userRepository.findAll().size());
+        Assert.assertEquals("156", user.getPassword());
+        Assert.assertNotNull(user.getUserRole());
+    }
+
     @Test(expected = UserServiceException.class)
     public void testRegisterEmptyEmail() throws Exception {
         UserRequest request = new UserRequest();
