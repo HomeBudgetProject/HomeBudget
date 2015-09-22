@@ -1,7 +1,9 @@
 package ua.com.homebudget.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import ua.com.homebudget.dto.sequences.user.GroupUser;
 import ua.com.homebudget.dto.UserRequest;
 import ua.com.homebudget.model.User;
 import ua.com.homebudget.service.UserService;
@@ -26,7 +28,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public void register(@RequestBody UserRequest request) {
+    public void register(@Validated({GroupUser.class}) @RequestBody UserRequest request) {
         userService.register(request);
     }
 

@@ -2,15 +2,24 @@ package ua.com.homebudget.service;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import ua.com.homebudget.DblIntegrationTest;
+import ua.com.homebudget.dto.sequences.user.GroupUser;
 import ua.com.homebudget.dto.UserRequest;
-import ua.com.homebudget.exception.UserServiceException;
 import ua.com.homebudget.model.User;
 import ua.com.homebudget.repository.RoleRepository;
 import ua.com.homebudget.repository.UserRepository;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+import java.util.Set;
+
+import static junit.framework.Assert.assertEquals;
 
 @Transactional
 @DatabaseSetup("user.xml")
@@ -22,6 +31,16 @@ public class UserServiceTest extends DblIntegrationTest {
     UserRepository userRepository;
     @Autowired
     RoleRepository roleRepository;
+
+    static Validator validator;
+
+    @BeforeClass
+    public static void before() throws Exception {
+        ValidatorFactory config = Validation.buildDefaultValidatorFactory();
+        validator = config.getValidator();
+    }
+
+    Set<ConstraintViolation<UserRequest>> constraintViolations;
 
     @Test
     public void testRegister() throws Exception {
@@ -44,20 +63,32 @@ public class UserServiceTest extends DblIntegrationTest {
         userService.register(request);
     }
 
-    @Test(expected = UserServiceException.class)
+    @Test
     public void testRegisterSpaceEmail() throws Exception {
         UserRequest request = new UserRequest();
         request.setEmail(" ");
-        request.setPassword("54");
-        userService.register(request);
+        request.setPassword("123456");
+        constraintViolations =
+                validator.validate(request, GroupUser.class);
+        Assert.assertEquals(1, constraintViolations.size());
+        Assert.assertEquals(
+                "The email must be between 6 and 60 characters",
+                constraintViolations.iterator().next().getMessage()
+        );
     }
 
-    @Test(expected = UserServiceException.class)
+    @Test
     public void testRegisterSpacePassword() throws Exception {
         UserRequest request = new UserRequest();
         request.setEmail("dfghj@sdfgh.dfg");
         request.setPassword(" ");
-        userService.register(request);
+        constraintViolations =
+                validator.validate(request, GroupUser.class);
+        Assert.assertEquals(1, constraintViolations.size());
+        Assert.assertEquals(
+                "The password must be between 6 and 100 characters",
+                constraintViolations.iterator().next().getMessage()
+        );
     }
 
     @Test()
@@ -65,7 +96,7 @@ public class UserServiceTest extends DblIntegrationTest {
         Integer usersSize = userRepository.findAll().size();
         UserRequest request = new UserRequest();
         request.setEmail("dfghj@sdfgh.dfg ");
-        request.setPassword("54");
+        request.setPassword("123456");
         userService.register(request);
         User user = userRepository.findByEmail("dfghj@sdfgh.dfg");
         Assert.assertEquals(usersSize + 1, userRepository.findAll().size());
@@ -78,53 +109,83 @@ public class UserServiceTest extends DblIntegrationTest {
         Integer usersSize = userRepository.findAll().size();
         UserRequest request = new UserRequest();
         request.setEmail("dfghj@sdfgh.dfg");
-        request.setPassword(" 156");
+        request.setPassword(" 123456");
         userService.register(request);
         User user = userRepository.findByEmail(request.getEmail());
         Assert.assertEquals(usersSize + 1, userRepository.findAll().size());
-        Assert.assertEquals("156", user.getPassword());
+        Assert.assertEquals("123456", user.getPassword());
         Assert.assertNotNull(user.getUserRole());
     }
 
-    @Test(expected = UserServiceException.class)
+    @Test
     public void testRegisterEmptyEmail() throws Exception {
         UserRequest request = new UserRequest();
         request.setEmail("");
-        request.setPassword("55");
-        userService.register(request);
+        request.setPassword("123456");
+        constraintViolations =
+                validator.validate(request, GroupUser.class);
+        Assert.assertEquals(1, constraintViolations.size());
+        Assert.assertEquals(
+                "The email must be between 6 and 60 characters",
+                constraintViolations.iterator().next().getMessage()
+        );
     }
 
-    @Test(expected = UserServiceException.class)
+    @Test
     public void testRegisterEmptyPassword() throws Exception {
         UserRequest request = new UserRequest();
         request.setEmail("dfghj@sdfgh.dfg");
         request.setPassword("");
-        userService.register(request);
+        constraintViolations =
+                validator.validate(request, GroupUser.class);
+        Assert.assertEquals(1, constraintViolations.size());
+        Assert.assertEquals(
+                "The password must be between 6 and 100 characters",
+                constraintViolations.iterator().next().getMessage()
+        );
     }
 
-    @Test(expected = UserServiceException.class)
+    @Test
     public void testRegisterLargeEmail() throws Exception {
         UserRequest request = new UserRequest();
-        request.setEmail("1234567890123456789012345678901234567890123456789012345678901234567890");
-        request.setPassword("55");
-        userService.register(request);
+        request.setEmail("123456789fghjhgfdfghjkl0123456789012345@6789012345678901234567890123456789.01234567890");
+        request.setPassword("123456");
+        constraintViolations =
+                validator.validate(request, GroupUser.class);
+        Assert.assertEquals(1, constraintViolations.size());
+        Assert.assertEquals(
+                "The email must be between 6 and 60 characters",
+                constraintViolations.iterator().next().getMessage()
+        );
     }
 
-    @Test(expected = UserServiceException.class)
+    @Test
     public void testRegisterLargePassword() throws Exception {
         UserRequest request = new UserRequest();
         request.setEmail("dfghj@sdfgh.dfg");
         request.setPassword("1234567890123456789012345678901234567890" +
                 "12345678901234567890123456789012345678901234567890123456789095");
-        userService.register(request);
+        constraintViolations =
+                validator.validate(request, GroupUser.class);
+        Assert.assertEquals(1, constraintViolations.size());
+        Assert.assertEquals(
+                "The password must be between 6 and 100 characters",
+                constraintViolations.iterator().next().getMessage()
+        );
     }
 
-    @Test(expected = UserServiceException.class)
+    @Test
     public void testRegisterNotEmail() throws Exception {
         UserRequest request = new UserRequest();
         request.setEmail("dfghjsdfgh.dfg");
-        request.setPassword("123");
-        userService.register(request);
+        request.setPassword("123456");
+        constraintViolations =
+                validator.validate(request, GroupUser.class);
+        Assert.assertEquals(1, constraintViolations.size());
+        Assert.assertEquals(
+                "Email is not valid",
+                constraintViolations.iterator().next().getMessage()
+        );
     }
 
     @Test
@@ -134,7 +195,7 @@ public class UserServiceTest extends DblIntegrationTest {
         Assert.assertNull(user);
     }
 
-    @Test(expected = UserServiceException.class)
+    @Test(expected = RuntimeException.class)
     public void testDeleteUserNotFound() {
         userService.deleteUser(-1);
     }
