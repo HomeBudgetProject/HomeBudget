@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ua.com.homebudget.dto.SystemVersion;
 
 @RestController
-@RequestMapping("/info")
+@RequestMapping("/api/info")
 public class InfoController {
 
     @Autowired

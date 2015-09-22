@@ -11,13 +11,13 @@ import ua.com.homebudget.service.UserService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController {
 
     @Autowired
     UserService userService;
 
-    @RequestMapping("/")
+    @RequestMapping("")
     public List<User> getUsers() {
         return userService.getUsers();
     }

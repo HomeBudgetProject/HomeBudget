@@ -12,7 +12,7 @@ import ua.com.homebudget.service.IncomeCategoryService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/categories")
+@RequestMapping("/api/categories")
 public class CategoryController {
 
     @Autowired
