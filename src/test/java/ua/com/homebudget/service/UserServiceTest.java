@@ -1,6 +1,7 @@
 package ua.com.homebudget.service;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -190,14 +191,15 @@ public class UserServiceTest extends DblIntegrationTest {
 
     @Test
     public void testDeleteUser() {
-        userService.deleteUser(2);
-        User user = userRepository.findOne(2);
+        userService.deleteUser("some@mail.com");
+        User user = userRepository.findByEmail("some@mail.com");
         Assert.assertNull(user);
     }
 
     @Test(expected = RuntimeException.class)
     public void testDeleteUserNotFound() {
-        userService.deleteUser(-1);
+        userService.deleteUser("-1");
     }
+
 
 }

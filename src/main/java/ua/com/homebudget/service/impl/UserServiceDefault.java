@@ -24,8 +24,8 @@ public class UserServiceDefault implements UserService {
         return userRepository.findAll();
     }
 
-    public User getUser(Integer id) {
-        return userRepository.findOne(id);
+    public User getUser(String email) {
+        return userRepository.findByEmail(email);
     }
 
     public void register(UserRequest request) {
@@ -41,11 +41,11 @@ public class UserServiceDefault implements UserService {
     }
 
     @Override
-    public void deleteUser(Integer id) {
-        if (getUser(id) == null) {
+    public void deleteUser(String email) {
+        if (getUser(email) == null) {
             throw new UserServiceException("User not found");
         }
-        userRepository.delete(id);
+        userRepository.delete(getUser(email).getUserId());
     }
 
 }

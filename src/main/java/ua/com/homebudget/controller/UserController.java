@@ -22,9 +22,9 @@ public class UserController {
         return userService.getUsers();
     }
 
-    @RequestMapping("/{id}")
-    public User getUser(@PathVariable Integer id) {
-        return userService.getUser(id);
+    @RequestMapping("/{email}")
+    public User getUser(@PathVariable String email) {
+        return userService.getUser(email);
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -32,8 +32,8 @@ public class UserController {
         userService.register(request);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteUser(@PathVariable Integer id) {
-        userService.deleteUser(id);
+    @RequestMapping(value = "/{email}", method = RequestMethod.DELETE)
+    public void deleteUser(@PathVariable String email) {
+        userService.deleteUser(email);
     }
 }
