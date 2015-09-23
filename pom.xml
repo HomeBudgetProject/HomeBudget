@@ -139,7 +139,18 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-	</dependencies>
+        <!-- Swagger dependencies for REST API visualizing -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<resources>
@@ -199,6 +210,7 @@
 						<format>html</format>
 						<format>xml</format>
 					</formats>
+                    <check/>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -296,6 +308,14 @@
 				</plugins>
 			</build>
 		</profile>
-
 	</profiles>
+
+    <repositories>
+        <repository>
+            <id>jcenter-snapshots</id>
+            <name>jcenter</name>
+            <url>https://jcenter.bintray.com/</url>
+        </repository>
+    </repositories>
+
 </project>
