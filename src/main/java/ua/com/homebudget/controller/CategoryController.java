@@ -41,22 +41,22 @@ public class CategoryController {
         incomeCategoryService.changeParent(id, newParent);
     }
 
-    @RequestMapping("/income/")
+    @RequestMapping(value = "/income/", method = RequestMethod.GET)
     public List<IncomeCategory> getIncomeCategories() {
         return incomeCategoryService.getCategories();
     }
 
-    @RequestMapping("/income/{id}")
+    @RequestMapping(value = "/income/{id}", method = RequestMethod.GET)
     public IncomeCategory getIncomeCategory(@PathVariable Integer id) {
         return incomeCategoryService.getCategory(id);
     }
 
-    @RequestMapping("/income/user/{id}")
+    @RequestMapping(value = "/income/user/{id}", method = RequestMethod.GET)
     public List<IncomeCategory> getUserIncomeCategory(@PathVariable Integer id) {
         return incomeCategoryService.getUsersCategory(id);
     }
 
-    @RequestMapping("/income/parent/{id}")
+    @RequestMapping(value = "/income/parent/{id}", method = RequestMethod.GET)
     public List<IncomeCategory> getChildesIncomeCategory(@PathVariable Integer id) {
         return incomeCategoryService.getChildesCategory(id);
     }
@@ -81,22 +81,22 @@ public class CategoryController {
         expenseCategoryService.changeParent(id, newParent);
     }
 
-    @RequestMapping("/expense/")
+    @RequestMapping(value = "/expense/", method = RequestMethod.GET)
     public List<ExpenseCategory> getExpenseCategories() {
         return expenseCategoryService.getCategories();
     }
 
-    @RequestMapping("/expense/{id}")
+    @RequestMapping(value = "/expense/{id}", method = RequestMethod.GET)
     public ExpenseCategory getExpenseCategory(@PathVariable Integer id) {
         return expenseCategoryService.getCategory(id);
     }
 
-    @RequestMapping("/expense/user/{id}")
+    @RequestMapping(value = "/expense/user/{id}", method = RequestMethod.GET)
     public List<ExpenseCategory> getUserExpenseCategory(@PathVariable Integer id) {
         return expenseCategoryService.getUsersCategory(id);
     }
 
-    @RequestMapping("/expense/parent/{id}")
+    @RequestMapping(value = "/expense/parent/{id}", method = RequestMethod.GET)
     public List<ExpenseCategory> getChildesExpenseCategory(@PathVariable Integer id) {
         return expenseCategoryService.getChildesCategory(id);
     }
