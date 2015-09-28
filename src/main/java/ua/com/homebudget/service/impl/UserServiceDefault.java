@@ -25,6 +25,7 @@ public class UserServiceDefault implements UserService {
     }
 
     public User getUser(String email) {
+        if(userRepository.findByEmail(email)==null)throw new UserServiceException("The email does not exist");
         return userRepository.findByEmail(email);
     }
 
@@ -42,8 +43,11 @@ public class UserServiceDefault implements UserService {
 
     @Override
     public void deleteUser(String email) {
-        if (getUser(email) == null) {
-            throw new UserServiceException("User not found");
+        try {
+            getUser(email);
+        }
+        catch (UserServiceException ex){
+            throw new UserServiceException("User not found",ex);
         }
         userRepository.delete(getUser(email).getUserId());
     }
