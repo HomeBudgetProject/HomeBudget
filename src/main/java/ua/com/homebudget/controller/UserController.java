@@ -11,6 +11,7 @@ import ua.com.homebudget.exception.UserServiceException;
 import ua.com.homebudget.model.User;
 import ua.com.homebudget.service.UserService;
 
+
 import java.util.List;
 
 @RestController
@@ -25,7 +26,7 @@ public class UserController {
         return userService.getUsers();
     }
 
-    @RequestMapping(value = "/{email}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{email:.+}", method = RequestMethod.GET)
     public User getUser(@PathVariable String email) {
         return userService.getUser(email);
     }
@@ -42,7 +43,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/{email}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{email:.+}", method = RequestMethod.DELETE)
     public void deleteUser(@PathVariable String email) {
         userService.deleteUser(email);
     }
