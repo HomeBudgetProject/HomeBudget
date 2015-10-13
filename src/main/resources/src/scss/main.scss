@@ -1,241 +1,267 @@
-@import 'sprite';
+@import "bower_components\bootstrap-sass\assets\stylesheets\bootstrap";
+@import "sprite";
 
 /*Color vars*/
-$blue: #78FFF5;
-$green: #7FE878;
-$green-light: #67E8B4;
-$gray: #BEC4C5;
+$blue: #78fff5;
+$green: #7fe878;
+$green-light: #67e8b4;
+$gray: #bec4c5;
 $content: #222627;
 $red: #d9534f;
 
 html {
-	height: 100%;
-
+    height: 100%;
 }
 
 body {
-	background: #fff;
-	height: 100%;
-	font-size: 14px;
-	color: $content;
+    height: 100%;
 
+    font-size: 14px;
+
+    color: $content;
+    background: #fff;
 }
 
-UL {
-	padding-left: 0px;
+ul {
+    padding-left: 0;
 
-	LI {
-		list-style-type: none;
-		margin-bottom: 10px;
+    li {
+        margin-bottom: 10px;
 
-	}
+        list-style-type: none;
+    }
 }
 
-A {
-	color: #3B2FBD;
-	text-decoration: none;
+a {
+    text-decoration: none;
 
-	&:hover {
-		text-decoration: none;
-	}
+    color: #3b2fbd;
+
+    &:hover {
+        text-decoration: none;
+    }
 }
 
-H2 {
-	color: $content;
-	font-size: 20px;
-	margin: 0;
+h2 {
+    margin: 0;
 
+    font-size: 20px;
+
+    color: $content;
 }
 
 .b-page {
-	padding: 30px 0 0 0;
-	height: 100%;
+    height: 100%;
+    padding: 30px 0 0 0;
 
-	> .row {
-		height: 100%;
-		
-	}
-
+    > .row {
+        height: 100%;
+    }
 }
 
 .b-sidebar {
-	height: 100%;
-	border-right: 1px solid #ccc;
+    height: 100%;
 
+    border-right: 1px solid #ccc;
 }
 
 .b-main {
-	height: 100%;
-
+    height: 100%;
 }
 
 .user {
-	margin-bottom: 30px;
-	padding-bottom: 20px;
-	border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
 
-	&__image {
-		float: left;
+    border-bottom: 1px solid #ccc;
 
-	
-		IMG {
-			width: 80px;
-			height: 80px;
+    &__image {
+        float: left;
 
-		}
-	}
 
-	&__mail {
-		float: left;
-	    margin-left: 30px;
+        img {
+            width: 80px;
+            height: 80px;
+        }
+    }
 
-	}
+    &__mail {
+        float: left;
+        margin-left: 30px;
+    }
 }
 
 .menu {
-	margin-bottom: 30px;
+    margin-bottom: 30px;
 
-	&__item {
-		background: $gray;
-		border-radius: 4px;
+    &__item {
+        border-radius: 4px;
+        background: $gray;
 
-		A {
-    		border-radius: 4px;
+        a {
+            border-radius: 4px;
+        }
+    }
 
-		}
-	}
+    &__icon {
+        display: inline-block;
+        margin-right: 10px;
 
-	&__icon {
-		display: inline-block;
-		vertical-align: middle;
-		margin-right: 10px;
+        vertical-align: middle;
 
-		&_transactions {
-			@include sprite($ico-transactions);
+        &_transactions {
+            @include sprite($ico-transactions);
+        }
 
-		}
+        &_statistics {
+            @include sprite($ico-statistics);
+        }
 
-		&_statistics {
-			@include sprite($ico-statistics);
-
-		}
-
-		&_settings {
-			@include sprite($ico-settings);
-
-		}
-	}
+        &_settings {
+            @include sprite($ico-settings);
+        }
+    }
 }
 
 .auth {
-	min-height: 600px;
-	float: none;
-	
-	&__logo {
-		margin-bottom: 30px;
-		text-align: center;
+    float: none;
+    min-height: 600px;
 
-		IMG {
-			width: 200px;
+    &__logo {
+        margin-bottom: 30px;
 
-		}
-	}
+        text-align: center;
 
-	&__form {
-		margin-bottom: 30px;
+        img {
+            width: 200px;
+        }
+    }
 
-	}
+    &__form {
+        margin-bottom: 30px;
+    }
 
-	FIELDSET {
-		text-align: center;
-    	margin-bottom: 10px;
+    fieldset {
+        margin-bottom: 10px;
 
-    	BUTTON {
+        text-align: center;
 
-    		margin-top: 50px;
-    	}
-	}
+        button {
+            margin-top: 50px;
+        }
+    }
 }
 
 .transaction {
+    textarea {
+        display: inline-block;
+        width: 83%;
+        height: 112px;
+        padding: 10px;
+        margin-right: 44px;
 
-	textarea {
-		width: 83%;
-	    margin-right: 44px;
-		padding: 10px;
-		height: 112px;
-		display: inline-block;
-		vertical-align: bottom;
+        vertical-align: bottom;
+    }
 
-	}
-	
-	&__header {
-		background: $green;
-		padding: 10px 15px;
+    &__header {
+        padding: 10px 15px;
 
-	}
+        background: $green;
+    }
 
-	&__sum {
-		
-		fieldset {
-			display: inline-block;
-			width: 50px;
-		    text-align: left;
+    &__sum {
+        fieldset {
+            display: inline-block;
+            width: 50px;
 
-			.btn {
-				width: 34px;
-				height: 34px;
+            text-align: left;
 
-				&:first-child {
-					margin-bottom: 10px;
+            .btn {
+                width: 34px;
+                height: 34px;
 
-				}
-			}
-		}
-	}
+                &:first-child {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
 
-	&__amount {
-		border: 1px solid #ccc;
-		padding: 15px;
-		color: $red;
-		display: inline-block;
-		width: 90px;
-		height: 79px;
-		vertical-align: top;
-		font-size: 31px;
+    &__amount {
+        display: inline-block;
+        width: 90px;
+        height: 79px;
+        padding: 15px;
 
-	}
+        font-size: 31px;
 
-	&__info {
-		
-		.btn {
-			color: #fff;
-			font-size: 22px;
-			text-align: center;
-			padding: 0px 20px;
+        vertical-align: top;
 
-		}
-	}
+        color: $red;
+        border: 1px solid #ccc;
+    }
 
-	&__additional, &__calendar, &__sum {
-		margin: 20px 20px 20px 0;
-		display: inline-block;
-		vertical-align: top;
-	}
+    &__info {
+        .btn {
+            padding: 0 20px;
 
-	&__additional {
-		width: 59%;
+            font-size: 22px;
 
-	}
+            text-align: center;
 
-	&__calendar {
-		padding-left: 40px;
-		margin: 20px 0;
+            color: #fff;
+        }
+    }
 
-		.btn {
-			padding: 0px 10px;
-			font-size: 22px;	
+    &__additional,
+    &__calendar,
+    &__sum {
+        display: inline-block;
+        margin: 20px 20px 20px 0;
 
-		}
-	}
+        vertical-align: top;
+    }
+
+    &__additional {
+        width: 59%;
+    }
+
+    &__calendar {
+        padding-left: 40px;
+        margin: 20px 0;
+
+        .btn {
+            padding: 0 10px;
+
+            font-size: 22px;
+        }
+    }
+}
+
+
+.pad-image {
+    margin-top: 50px;
+}
+.pad-btn {
+    margin-top: 100px;
+}
+.pad-form {
+    padding-top: 50px;
+}
+.btn-height {
+    height: 80px;
+}
+
+// input.ng-invalid {
+//     @extend .has-error;
+// }
+input.ng-invalid {
+    border-color: #a94442;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+input.ng-invalid:focus {
+    border-color: #843534;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
 }

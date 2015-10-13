@@ -1,64 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="homebudgetApp">
 <head>
-	<meta charset="UTF-8">
-	<title>Main page</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Homebudget</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <base href="/">
 </head>
 <body>
-
-	<div class="container b-page">
-		<div class="row">
-			<div class="col-xs-4 b-sidebar">
-				<div class="user clearfix">
-					<div class="user__image">
-						<img src="img/userpic.png" alt="userLogo">
-					</div>
-					<div class="user__mail">
-						<span>user@gmail.com</span>
-					</div>
-				</div>
-				<div class="menu">
-					<ul class="nav nav-pills nav-stacked">
-						<li role="presentation" class="menu__item">
-							<a href="#"><i class="menu__icon menu__icon_transactions"></i>Transactions</a>
-						</li>
-						<li role="presentation" class="menu__item">
-							<a href="#"><i class="menu__icon menu__icon_statistics"></i>Statistics</a>
-						</li>
-						<li role="presentation" class="menu__item">
-							<a href="#"><i class="menu__icon menu__icon_settings"></i>Settings</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-xs-8 b-main">
-				<form class="transaction" name="transaction" method="POST">
-					<div class="transaction__header"><h2>Transactions</h2></div>
-					<div class="wrapper">
-						<div class="transaction__sum">
-							<fieldset>
-								<button class="btn btn-success">+</button>
-								<button class="btn btn-danger">-</button>
-							</fieldset>
-							<div class="transaction__amount">
-								0.00
-							</div>
-						</div>
-						<div class="transaction__additional"></div>
-						<div class="transaction__calendar">
-							<button class="btn btn-info">Today</button>
-						</div>
-					</div>
-					<div class="transaction__info">
-						<textarea name="description" id="transactionDescription" cols="30" rows="10" placeholder="Please, leave a message"></textarea>
-						<button class="btn btn-success">Add</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	
-	<script type="text/javascript" src="js/app.js"></script>
+<div ng-view></div>
 </body>
+<script type="text/javascript" src="js/app.js"></script>
 </html>
