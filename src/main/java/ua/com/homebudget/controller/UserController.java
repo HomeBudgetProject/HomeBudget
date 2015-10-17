@@ -39,14 +39,7 @@ public class UserController {
 
     @RequestMapping(value = "/whoami", method = RequestMethod.GET)
     public String getPrincipal() {
-        String username = null;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-          username = ((UserDetails)principal).getUsername();
-        } else {
-          username = principal.toString();
-        }        
-        return username;
+        return userService.getCurrentUser();
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -65,4 +58,6 @@ public class UserController {
     public void deleteUser(@PathVariable String email) {
         userService.deleteUser(email);
     }
+    
+
 }

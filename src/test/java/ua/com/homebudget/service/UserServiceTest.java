@@ -1,26 +1,33 @@
 package ua.com.homebudget.service;
 
-import com.github.springtestdbunit.annotation.DatabaseSetup;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
-import ua.com.homebudget.DblIntegrationTest;
-import ua.com.homebudget.dto.sequences.user.GroupUser;
-import ua.com.homebudget.dto.UserRequest;
-import ua.com.homebudget.model.User;
-import ua.com.homebudget.repository.RoleRepository;
-import ua.com.homebudget.repository.UserRepository;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
+import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import java.util.Set;
 
-import static junit.framework.Assert.assertEquals;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.github.springtestdbunit.annotation.DatabaseSetup;
+
+import ua.com.homebudget.DblIntegrationTest;
+import ua.com.homebudget.dto.UserRequest;
+import ua.com.homebudget.dto.sequences.user.GroupUser;
+import ua.com.homebudget.exception.UserServiceException;
+import ua.com.homebudget.model.User;
+import ua.com.homebudget.repository.RoleRepository;
+import ua.com.homebudget.repository.UserRepository;
 
 @Transactional
 @DatabaseSetup("user.xml")
@@ -39,6 +46,11 @@ public class UserServiceTest extends DblIntegrationTest {
     public static void before() throws Exception {
         ValidatorFactory config = Validation.buildDefaultValidatorFactory();
         validator = config.getValidator();
+    }
+    
+    @Before
+    public void setUp() {
+        mockSecurityContext();
     }
 
     Set<ConstraintViolation<UserRequest>> constraintViolations;
@@ -193,10 +205,27 @@ public class UserServiceTest extends DblIntegrationTest {
     public void testDeleteUser() {
         userService.deleteUser("some@mail.com");
         User user = userRepository.findByEmail("some@mail.com");
-        Assert.assertNull(user);
+        assertNull(user);
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test(expected = UserServiceException.class)
+    public void testDeleteAnotherUser() {
+        // register a new user
+        UserRequest request = new UserRequest();
+        String email = "qwe@asd.zxc";
+        request.setEmail(email);
+        request.setPassword(" 123456");
+        userService.register(request);
+        User user = userRepository.findByEmail(request.getEmail());
+        assertNotNull(user);
+        assertThat(user.getEmail(), is(email));
+        
+        // try to delete a just created user being authenticated as 
+        // another user
+        userService.deleteUser(email);
+    }
+
+    @Test(expected = UserServiceException.class)
     public void testDeleteUserNotFound() {
         userService.deleteUser("-1");
     }

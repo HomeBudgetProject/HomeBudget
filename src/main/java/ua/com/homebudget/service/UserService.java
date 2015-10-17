@@ -11,5 +11,6 @@ public interface UserService {
     public User getUser(String email);
     public void register(UserRequest request);
     public void deleteUser(String email);
+    public String getCurrentUser();
 
 }
