@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface UserService {
 
-    public List<User> getUsers();
-    public User getUser(String email);
-    public void register(UserRequest request);
-    public void deleteUser(String email);
-    public String getCurrentUser();
+    List<User> getUsers();
+    User getUser(String email);
+    void register(UserRequest request);
+    void deleteUser(String email);
+    String getCurrentUser();
 
 }

@@ -18,13 +18,15 @@ import ua.com.homebudget.security.RESTAuthenticationSuccessHandler;
 
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-    
+
+    private final String LOGIN_ENDPOINT = "/api/login";
+    private final String LOGOUT_ENDPOINT = "/api/logout";
     private final String[] API_PUBLIC_ENDPOINTS = {
-            "/api/login", "/api/users/register", "/api/users/whoami", "/api/info/*"};
+            LOGIN_ENDPOINT, "/api/users/register", "/api/users/whoami", "/api/info/*"};
 
     private final String API_MATCHER = "/api/**";
 
-            private final String AUTHORIZATION_COOKIE_NAME = "auth_key";
+    private final String AUTHORIZATION_COOKIE_NAME = "auth_key";
     
     @Autowired
     private UserDetailsService userDetailsService;
@@ -40,10 +42,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(API_PUBLIC_ENDPOINTS).permitAll()
             .antMatchers(API_MATCHER).authenticated();
         http.csrf().disable();
+        http.formLogin().loginPage(LOGIN_ENDPOINT);
         http.formLogin().successHandler(authenticationSuccessHandler);
         http.formLogin().failureHandler(new SimpleUrlAuthenticationFailureHandler());
+        http.logout().logoutUrl(LOGOUT_ENDPOINT);
         http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
-
     }
 
     @Override
