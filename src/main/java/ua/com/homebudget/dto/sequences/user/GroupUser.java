@@ -5,6 +5,16 @@ import javax.validation.GroupSequence;
 /**
  * @author Bondar Dmytro.
  */
-@GroupSequence({EmailStep1.class, EmailStep2.class, PasswordStep1.class})
+@GroupSequence({GroupUser.EmailStepOne.class, GroupUser.EmailStepTwo.class, GroupUser.PasswordStepOne.class})
 public interface GroupUser {
+
+    interface EmailStepOne {
+    }
+
+    interface EmailStepTwo {
+    }
+
+    interface PasswordStepOne {
+    }
+
 }
