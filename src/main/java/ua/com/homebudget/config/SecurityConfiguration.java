@@ -23,9 +23,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private final String LOGOUT_ENDPOINT = "/api/logout";
     private final String[] API_PUBLIC_ENDPOINTS = {
             LOGIN_ENDPOINT, "/api/users/register", "/api/users/whoami", "/api/info/*"};
-
     private final String API_MATCHER = "/api/**";
-
     private final String AUTHORIZATION_COOKIE_NAME = "auth_key";
     
     @Autowired
@@ -62,7 +60,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public ServletContextInitializer servletContextInitializer() {
         return new ServletContextInitializer() {
-
             @Override
             public void onStartup(ServletContext servletContext) throws ServletException {
                 servletContext.getSessionCookieConfig().setName(AUTHORIZATION_COOKIE_NAME);

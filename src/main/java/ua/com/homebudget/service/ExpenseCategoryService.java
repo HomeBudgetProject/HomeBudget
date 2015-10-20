@@ -11,20 +11,20 @@ import java.util.List;
 
 public interface ExpenseCategoryService {
 
-    public List<ExpenseCategory> getCategories();
+    List<ExpenseCategory> getCategories();
 
-    public ExpenseCategory getCategory(Integer id);
+    ExpenseCategory getCategory(Integer id);
 
-    public void add(ExpenseCategoryRequest request);
+    void add(ExpenseCategoryRequest request);
 
-    public void delete (Integer id);
+    void delete (Integer id);
 
-    public void changeName(Integer id, String newName);
+    void changeName(Integer id, String newName);
 
-    public void changeParent(Integer id, Integer newParent);
+    void changeParent(Integer id, Integer newParent);
 
-    public List<ExpenseCategory> getUsersCategory(Integer id);
+    List<ExpenseCategory> getUsersCategory(Integer id);
 
-    public List<ExpenseCategory> getChildesCategory(Integer id);
+    List<ExpenseCategory> getChildesCategory(Integer id);
 
 }

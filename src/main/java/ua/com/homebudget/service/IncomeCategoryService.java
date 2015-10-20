@@ -12,22 +12,20 @@ import java.util.List;
 
 public interface IncomeCategoryService {
 
-    public List<IncomeCategory> getCategories();
+    List<IncomeCategory> getCategories();
 
-    public IncomeCategory getCategory(Integer id);
+    IncomeCategory getCategory(Integer id);
 
-    public void add(IncomeCategoryRequest request);
+    void add(IncomeCategoryRequest request);
 
-    public void delete (Integer id);
+    void delete (Integer id);
 
-    public void changeName(Integer id, String newName);
+    void changeName(Integer id, String newName);
 
-    public void changeParent(Integer id, Integer newParent);
+    void changeParent(Integer id, Integer newParent);
 
-    public List<IncomeCategory> getUsersCategory(Integer id);
+    List<IncomeCategory> getUsersCategory(Integer id);
 
-    public List<IncomeCategory> getChildesCategory(Integer id);
-
-
+    List<IncomeCategory> getChildesCategory(Integer id);
 
 }

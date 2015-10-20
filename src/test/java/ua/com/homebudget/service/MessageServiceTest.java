@@ -17,7 +17,7 @@ public class MessageServiceTest extends IntegrationTest {
     public void testMessageBundleAccessability() {
         assertNotNull("MessageService has not been configured", messageService);
         assertEquals("Operation is not allowed", 
-                messageService.getMessage("err.operation.not.allowed"));;
+                messageService.getMessage("err.operation.not.allowed"));
     }
 
 }
