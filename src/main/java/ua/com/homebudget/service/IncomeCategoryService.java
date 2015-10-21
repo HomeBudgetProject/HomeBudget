@@ -1,7 +1,6 @@
 package ua.com.homebudget.service;
 
 import ua.com.homebudget.dto.IncomeCategoryRequest;
-import ua.com.homebudget.dto.UserRequest;
 import ua.com.homebudget.model.IncomeCategory;
 
 import java.util.List;

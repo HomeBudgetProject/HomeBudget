@@ -23,10 +23,10 @@ public class UserServiceDefault implements UserService {
 
     @Autowired
     private RoleRepository roleRepository;
-    
+
     @Autowired
     MessageService messageSource;
-    
+
 
     public List<User> getUsers() {
         return userRepository.findAll();
@@ -34,20 +34,16 @@ public class UserServiceDefault implements UserService {
 
     public User getUser(String email) {
         User user = userRepository.findByEmail(email);
-        
-        if (user==null) {
-            throw new UserServiceException(
-                    messageSource.getMessage("err.email.not.exists"));
+        if (user == null) {
+            throw new UserServiceException(messageSource.getMessage("err.email.not.exists"));
         }
-        
         return user;
     }
 
     public void register(UserRequest request) {
         User user = userRepository.findByEmail(request.getEmail());
         if (user != null) {
-            throw new UserServiceException(
-                    messageSource.getMessage("err.user.already.exists"));
+            throw new UserServiceException(messageSource.getMessage("err.user.already.exists"));
         }
         user = new User();
         user.setEmail(request.getEmail());
@@ -58,15 +54,13 @@ public class UserServiceDefault implements UserService {
 
     @Override
     public void deleteUser(String email) {
-        User user = null;
+        User user;
         try {
             user = getUser(email);
+        } catch (UserServiceException ex) {
+            throw new UserServiceException(messageSource.getMessage("err.user.not.found"), ex);
         }
-        catch (UserServiceException ex){
-            throw new UserServiceException(
-                    messageSource.getMessage("err.user.not.found"), ex);
-        }
-        
+
         String currentUser = getCurrentUser();
         if (currentUser != null && currentUser.equals(email)) {
             userRepository.delete(user.getUserId());
@@ -76,9 +70,9 @@ public class UserServiceDefault implements UserService {
         }
 
     }
-    
+
     public String getCurrentUser() {
-        String username = null;
+        String username;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
             username = ((UserDetails) principal).getUsername();

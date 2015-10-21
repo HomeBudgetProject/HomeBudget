@@ -33,8 +33,7 @@ public class DefaultUserDetailsService implements UserDetailsService {
         
         // TODO add granted role
         List<GrantedAuthority> gas = new ArrayList<GrantedAuthority>();
-        UserDetails userDetails = new org.springframework.security.core.userdetails.User(username, user.getPassword(),  true, true,
+        return new org.springframework.security.core.userdetails.User(username, user.getPassword(),  true, true,
                 true, true, gas);
-        return userDetails;
     }
 }
