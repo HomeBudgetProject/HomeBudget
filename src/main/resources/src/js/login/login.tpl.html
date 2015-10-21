@@ -1,21 +1,33 @@
-    <div class="container-fluid">
+    <div id="login" class="container-fluid">
         <div class="row">
             <img src="http://lorempixel.com/400/200/cats/1/" alt="Logo" class="img-rounded center-block form-group pad-image"></img>
         </div>
-        <form role="form">
+        <form  name="loginform" role="form" ng-submit="submit()" ng-controller="LoginController as ctrl">
             <div class="row pad-form">
                 <div class=" col-md-4 col-md-offset-4  ">
                     <div class="form-group">
-                        <input class="form-control input-lg " type="text" placeholder="Email Address">
+                        <input class="form-control input-lg " type="text" name="email" ng-model="userdata.email" validateEmail placeholder="Email Address">
                     </div>
+                    <ng-messages for="loginform.email.$error" role="alert">
+                            <div class="alert alert-danger" ng-message="required">Введите Email</div>
+                            <div class="alert alert-danger" ng-message="regexp">Введены некорректные данные</div>
+                            <div class="alert alert-danger" ng-message="emaillength">Email должен содержать от 6 до 60 символов</div>
+                    </ng-messages>
                     <div class="form-group">
-                        <input class="form-control input-lg" type="password" placeholder="Password">
+                        <input class="form-control input-lg" validatePassword  name="password" ng-model="userdata.password" type="password" placeholder="Password">
                     </div>
+                    <ng-messages for="loginform.password.$error" role="alert">
+                            <div class="alert alert-danger" ng-message="required">Введите пароль</div>
+                            <div class="alert alert-danger" ng-message="regexp">Введены некорректные данные</div>
+                            <div class="alert alert-danger" ng-message="passwordlength">Пароль должен содержать от 6 до 100 символов</div>
+                    </ng-messages>
+                    <div ng-if="ctrl.error" class="alert alert-danger"> {{ctrl.message}}</div>
+                    <div ng-if="!ctrl.error && ctrl.error !== undefined" class="alert alert-info"> {{ctrl.message}}</div> 
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 ">
-                    <button type="button" class="btn btn-default btn-lg btn-block center-block pad-btn btn-height ">Log In</button>
+                   <input type="submit" value="Log In" ng-disabled="loginform.$invalid || loginform.email.$pristine || loginform.password.$pristine" class="btn btn-primary btn-lg btn-block center-block pad-btn btn-height" />
                 </div>
             </div>
         </form>
