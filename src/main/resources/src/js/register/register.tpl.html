@@ -1,4 +1,4 @@
-<div class="container-fluid" >
+<div id="register" class="container-fluid" >
         <div class="row">
             <img src="http://lorempixel.com/400/200/cats/1/" alt="Logo" class="img-rounded center-block form-group pad-image">
         </div>
@@ -15,7 +15,7 @@
                             <div class="alert alert-danger" ng-message="emaillength">Email должен содержать от 6 до 60 символов</div>
                     </ng-messages>
                     <div class="form-group">
-                        <input class="form-control input-lg" name="password" type="password" placeholder="Введите пароль" validatepassword ng-model="userdata.password">
+                        <input class="form-control input-lg" name="password" type="password" placeholder="Введите пароль" validatePassword ng-model="userdata.password">
                     </div>
                     <ng-messages for="registerform.password.$error" role="alert">
                             <div class="alert alert-danger" ng-message="required">Введите пароль</div>
