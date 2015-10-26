@@ -196,9 +196,13 @@
 				<artifactId>flyway-maven-plugin</artifactId>
 				<version>3.2.1</version>
 				<configuration>
-					<url>${database.url}${database.schema.name}</url>
-					<user>${database.username}</user>
-					<password>${database.password}</password>
+					<table>db_patch</table>
+					<placeholderPrefix>#[</placeholderPrefix>
+					<placeholderSuffix>]</placeholderSuffix>
+					<configFile>${basedir}/src/main/resources/local.db.properties</configFile>
+					<initVersion>1.0.0</initVersion>
+					<outOfOrder>true</outOfOrder>
+					<validateOnMigrate>false</validateOnMigrate>
 				</configuration>
 				<dependencies>
 					<dependency>
