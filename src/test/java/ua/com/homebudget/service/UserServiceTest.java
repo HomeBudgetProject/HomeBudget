@@ -40,7 +40,8 @@ public class UserServiceTest extends DblIntegrationTest {
     @Autowired
     RoleRepository roleRepository;
 
-    static Validator validator;
+    private Set<ConstraintViolation<UserRequest>> constraintViolations;
+    private static Validator validator;
 
     @BeforeClass
     public static void before() throws Exception {
@@ -52,8 +53,6 @@ public class UserServiceTest extends DblIntegrationTest {
     public void setUp() {
         mockSecurityContext();
     }
-
-    Set<ConstraintViolation<UserRequest>> constraintViolations;
 
     @Test
     public void testRegister() throws Exception {
