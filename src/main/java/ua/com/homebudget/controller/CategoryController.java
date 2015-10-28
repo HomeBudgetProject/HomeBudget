@@ -22,7 +22,7 @@ public class CategoryController {
     ExpenseCategoryService expenseCategoryService;
 
     @RequestMapping(value = "/income/add", method = RequestMethod.POST)
-    public void registerIncoem(@RequestBody IncomeCategoryRequest request) {
+    public void registerIncome(@RequestBody IncomeCategoryRequest request) {
         incomeCategoryService.add(request);
     }
 
