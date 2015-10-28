@@ -5,8 +5,8 @@ angular.module('homebudgetApp').controller("LoginController", ['$scope', '$http'
             var resp = $http({
                 url: '/api/login',
                 method: "POST",
-                data: "username=" + $scope.loginform.email.$modelValue +
-                    "&password=" + $scope.loginform.password.$modelValue,
+                data: "username=" + encodeURIComponent($scope.loginform.email.$modelValue) +
+                    "&password=" + encodeURIComponent($scope.loginform.password.$modelValue),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
