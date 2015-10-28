@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ua.com.homebudget.dto.UserRequest;
@@ -30,9 +31,9 @@ public class UserController {
         return userService.getUsers();
     }
 
-    @RequestMapping(value = "/{email:.+}", method = RequestMethod.GET)
-    public User getUser(@PathVariable String email) {
-        return userService.getUser(email);
+    @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
+    public User getUser() {
+        return userService.getUser(userService.getCurrentUser());
     }
 
     @RequestMapping(value = "/whoami", method = RequestMethod.GET)
@@ -52,9 +53,9 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/{email:.+}", method = RequestMethod.DELETE)
-    public void deleteUser(@PathVariable String email) {
-        userService.deleteUser(email);
+    @RequestMapping(value = "/{id:.+}", method = RequestMethod.DELETE)
+    public void deleteUser(@PathVariable Integer id) {
+        userService.deleteUser(id);
     }
     
 

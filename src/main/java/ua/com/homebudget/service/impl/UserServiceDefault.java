@@ -54,21 +54,26 @@ public class UserServiceDefault implements UserService {
 
     @Override
     public void deleteUser(String email) {
-        User user;
-        try {
-            user = getUser(email);
-        } catch (UserServiceException ex) {
-            throw new UserServiceException(messageSource.getMessage("err.user.not.found"), ex);
+        deleteUser(userRepository.findByEmail(email));
+    }
+
+    @Override
+    public void deleteUser(int id) {
+        deleteUser(userRepository.findOne(id));
+    }
+    
+    private void deleteUser(User user) {
+        if (user == null) {
+            throw new UserServiceException(messageSource.getMessage("err.user.not.found"));
         }
 
         String currentUser = getCurrentUser();
-        if (currentUser != null && currentUser.equals(email)) {
+        if (currentUser != null && currentUser.equals(user.getEmail())) {
             userRepository.delete(user.getUserId());
             SecurityContextHolder.getContext().setAuthentication(null);
         } else {
             throw new UserServiceException(messageSource.getMessage("err.operation.not.allowed"));
         }
-
     }
 
     public String getCurrentUser() {

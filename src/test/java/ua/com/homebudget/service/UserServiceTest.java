@@ -2,9 +2,11 @@ package ua.com.homebudget.service;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import java.nio.channels.AsynchronousServerSocketChannel;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -52,6 +54,15 @@ public class UserServiceTest extends DblIntegrationTest {
     @Before
     public void setUp() {
         mockSecurityContext();
+    }
+
+    @Test
+    public void testGetUser() throws Exception {
+        final String email = "weird/email@mail.com";
+        User user = userService.getUser(email);
+        assertNotNull(user);
+        assertEquals(Integer.valueOf(3), user.getUserId());
+        assertEquals(email, user.getEmail());
     }
 
     @Test
@@ -204,6 +215,22 @@ public class UserServiceTest extends DblIntegrationTest {
     public void testDeleteUser() {
         userService.deleteUser("some@mail.com");
         User user = userRepository.findByEmail("some@mail.com");
+        assertNull(user);
+    }
+
+    @Test(expected = UserServiceException.class)
+    public void testDeleteNonExistentUserById() {
+        User user = userRepository.findOne(-1);
+        assertNull(user);
+        userService.deleteUser(-1);
+    }
+
+    @Test(expected = UserServiceException.class)
+    public void testDeleteUserById() {
+        User user = userRepository.findOne(2);
+        assertNotNull(user);
+        userService.deleteUser(2);
+        user = userRepository.findOne(2);
         assertNull(user);
     }
 
