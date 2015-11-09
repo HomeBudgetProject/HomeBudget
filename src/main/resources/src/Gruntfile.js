@@ -67,6 +67,16 @@ module.exports = function(grunt) {
                 src: ['bower_components/bootstrap/dist/css/bootstrap.min.css', '../static/css/style.css'],
                 dest: "../static/css/style.css"
             }
+        },
+        watch: {
+            scripts: {
+                files: ['js/**/*.js','js/**/*.tpl.html','html/*.js','scss/main.scss'],
+                tasks: ['sass', 'concat','concat_css', 'copy'],
+                options: {
+                    spawn: false,
+                    event: ['added', 'deleted', 'changed']
+                },
+            }
         }
     });
 
@@ -76,8 +86,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-spritesmith');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-concat-css');
-
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('default', ['jshint', 'sprite', 'sass', 'concat', 'copy', 'concat_css']);
-
+    grunt.registerTask('dev', ['jshint', 'sprite', 'sass', 'concat', 'copy', 'concat_css','watch']);
 };
