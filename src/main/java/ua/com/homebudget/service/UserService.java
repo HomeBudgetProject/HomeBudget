@@ -1,5 +1,6 @@
 package ua.com.homebudget.service;
 
+import ua.com.homebudget.dto.EmailSendContainer;
 import ua.com.homebudget.dto.UserRequest;
 import ua.com.homebudget.model.User;
 
@@ -13,5 +14,6 @@ public interface UserService {
     void deleteUser(String email);
     void deleteUser(int id);
     String getCurrentUser();
+    void resetPassword(EmailSendContainer emailSendContainer);
 
 }

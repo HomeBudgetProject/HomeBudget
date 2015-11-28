@@ -7,7 +7,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import ua.com.homebudget.dto.EmailSendContainer;
 import ua.com.homebudget.dto.UserRequest;
+import ua.com.homebudget.dto.templates.EmailTemplateCommon;
+import ua.com.homebudget.dto.templates.ResetPasswordTemplate;
+import ua.com.homebudget.email.EmailSenderImpl;
 import ua.com.homebudget.exception.UserServiceException;
 import ua.com.homebudget.model.User;
 import ua.com.homebudget.repository.RoleRepository;
@@ -26,6 +30,9 @@ public class UserServiceDefault implements UserService {
 
     @Autowired
     MessageService messageSource;
+
+    @Autowired
+    EmailSenderImpl emailSenderImpl;
 
 
     public List<User> getUsers() {
@@ -85,6 +92,11 @@ public class UserServiceDefault implements UserService {
             username = principal.toString();
         }
         return username;
+    }
+
+    public void resetPassword(EmailSendContainer emailSendContainer) {
+        EmailTemplateCommon template = new ResetPasswordTemplate();
+        emailSenderImpl.send(emailSendContainer, template);
     }
 
 }
