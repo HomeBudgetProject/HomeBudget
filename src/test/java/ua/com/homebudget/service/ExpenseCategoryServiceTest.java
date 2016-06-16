@@ -23,12 +23,13 @@ public class ExpenseCategoryServiceTest extends DblIntegrationTest {
 
     @Test
     public void testAddCategory() throws Exception {
+        long size = repository.count();
         ExpenseCategoryRequest request = new ExpenseCategoryRequest();
         request.setName("new category");
         request.setParentId(null);
         request.setUser(1);
         service.add(request);
-        Assert.assertEquals(4, repository.findAll().size());
+        Assert.assertEquals(++size, repository.count());
     }
 
     @Test(expected = ExpenseCategoryServiceException.class)
