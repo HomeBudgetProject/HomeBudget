@@ -1,13 +1,13 @@
 package ua.com.homebudget.service.impl;
 
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import ua.com.homebudget.dto.EmailSendContainer;
 import ua.com.homebudget.dto.UserRequest;
 import ua.com.homebudget.dto.templates.EmailTemplateCommon;
 import ua.com.homebudget.dto.templates.ResetPasswordTemplate;
@@ -94,9 +94,28 @@ public class UserServiceDefault implements UserService {
         return username;
     }
 
-    public void resetPassword(EmailSendContainer emailSendContainer) {
-        EmailTemplateCommon template = new ResetPasswordTemplate();
-        emailSenderImpl.send(emailSendContainer, template);
+    @Override
+    public void sendPasswordRequestEmail(String email) {
+         final Integer TOKEN_LIFE_TIME_IN_HOURS = 4;
+         final String SUBJECT = "HomeBudget: Password Recovery Request";
+         final String TEMPLATE_NAME = "password-recovery";
+         
+         EmailTemplateCommon templateInfo = new ResetPasswordTemplate();
+         templateInfo.setSubject(SUBJECT);
+         templateInfo.setTo(email);
+         templateInfo.setTemplateName(TEMPLATE_NAME);
+         templateInfo.setParameter("tokenLifeTime", TOKEN_LIFE_TIME_IN_HOURS);
+         templateInfo.setParameter("recoveryLink", generateRecoveryLink(email));
+         
+         emailSenderImpl.send(templateInfo, Locale.getDefault());
     }
+
+    // TODO implement password recovery token generation
+    private Object generateRecoveryLink(String currentUser) {
+        // TODO Auto-generated method stub
+        return "TODO";
+    }
+    
+    
 
 }

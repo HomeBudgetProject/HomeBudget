@@ -17,6 +17,7 @@ import javax.validation.ValidatorFactory;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -256,5 +257,11 @@ public class UserServiceTest extends DblIntegrationTest {
         userService.deleteUser("-1");
     }
 
+    @Test
+    @Ignore
+    public void testSendPasswordRequestEmail() {
+        String email = "qwe@asd.zxc";
+        userService.sendPasswordRequestEmail(email);
+    }
 
 }

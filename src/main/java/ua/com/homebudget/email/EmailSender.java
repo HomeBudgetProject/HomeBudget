@@ -1,12 +1,14 @@
 package ua.com.homebudget.email;
 
-import org.springframework.stereotype.Component;
-import ua.com.homebudget.dto.EmailSendContainer;
-import ua.com.homebudget.dto.templates.EmailTemplateCommon;
+import java.util.Locale;
+import java.util.Properties;
 
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
-import java.util.Properties;
+
+import org.springframework.stereotype.Component;
+
+import ua.com.homebudget.dto.templates.EmailTemplateCommon;
 
 /**
  * Created by kart on 15.11.2015.
@@ -14,8 +16,8 @@ import java.util.Properties;
 @Component
 public interface EmailSender {
     //https://www.google.com/settings/security/lesssecureapps must be turn on
-     String email = "homebudgetteam@gmail.com";
-     String password = "ltymubdrjitkmrt";
+    String email = "login";
+    String password = "password";
 
     default Session getSession(){
         Properties props = new Properties();
@@ -33,5 +35,5 @@ public interface EmailSender {
         return session;
     };
 
-    void send(EmailSendContainer emailSendContainer,EmailTemplateCommon template);
+    void send(final EmailTemplateCommon template, final Locale locale);
 }

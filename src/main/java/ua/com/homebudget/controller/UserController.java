@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import ua.com.homebudget.dto.EmailSendContainer;
 import ua.com.homebudget.dto.UserRequest;
 import ua.com.homebudget.dto.sequences.user.GroupUser;
 import ua.com.homebudget.exception.UserServiceException;
@@ -59,7 +58,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
-    public void resetPassword(@RequestBody EmailSendContainer emailSendContainer){
-        userService.resetPassword(emailSendContainer);
+    public void resetPassword(@RequestBody String email){
+        userService.sendPasswordRequestEmail(email);
     }
 }
