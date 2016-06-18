@@ -94,7 +94,7 @@ public class ChangePasswordRequestRepository {
             m.update(messageToSign.getBytes(), 0, messageToSign.length());
             digest = URLEncoder.encode(new String(Base64.encode(m.digest())), "UTF-8");
         } catch (UnsupportedEncodingException e) {
-            log.error("Failed to enpcode digest: ", e);
+            log.error("Failed to encode digest: ", e);
             throw new RuntimeException(e);
         } catch (NoSuchAlgorithmException e) {
             log.error("Failed to generate digest: ", e);
@@ -105,7 +105,7 @@ public class ChangePasswordRequestRepository {
         return digest;
     }
 
-    private void purgeToken(String digest) {
+    public void purgeToken(String digest) {
         if (digest != null && container.containsKey(digest)) {
             container.remove(digest);
         }

@@ -123,6 +123,8 @@ public class UserServiceDefault implements UserService {
         User user = getUser(email);
         user.setPassword(request.getNewPassword());
         userRepository.save(user);
+        changePasswordRequestRepository.purgeToken(request.getTokenHash());
+        SecurityContextHolder.getContext().setAuthentication(null);
     }
     
     private String generateRecoveryLink(String email) {

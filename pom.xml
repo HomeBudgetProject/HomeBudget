@@ -32,6 +32,8 @@
 		<database.password>rf2NM4DR9GMUHBqT</database.password>
 		<database.hibernate.dialect>org.hibernate.dialect.PostgreSQL9Dialect</database.hibernate.dialect>
 		<database.driver.classname>org.postgresql.Driver</database.driver.classname>
+		<smtp.login>login</smtp.login>
+		<smtp.password>password</smtp.password>
 	</properties>
 
 	<dependencies>
@@ -69,6 +71,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
+			<version>${spring.boot.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
 			<version>${spring.boot.version}</version>
 		</dependency>
 		<dependency>

@@ -11,25 +11,32 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
+import lombok.extern.slf4j.Slf4j;
 import ua.com.homebudget.dto.templates.EmailTemplateCommon;
 
 /**
  * Created by kart on 15.11.2015.
  */
 @Component
+@Slf4j
 public class EmailSenderImpl implements EmailSender {
 
     @Autowired 
     private TemplateEngine templateEngine;
+    
+    @Autowired
+    private JavaMailSender javaMailSender;
 
     @Override
     public void send(final EmailTemplateCommon template, final Locale locale) {
         try {
-            MimeMessage message = new MimeMessage(getSession());
+            MimeMessage message = javaMailSender.createMimeMessage();
             message.setFrom(new InternetAddress(email));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(template.getTo()));
@@ -44,9 +51,11 @@ public class EmailSenderImpl implements EmailSender {
             
             final String htmlContent = this.templateEngine.process(template.getTemplateName(), ctx);
             message.setText(htmlContent, "utf-8", "html");
-            
-            Transport.send(message);
+
+            javaMailSender.send(message);
+
         } catch (MessagingException e) {
+            log.error("Error while sending email {}", template, e);
             throw new RuntimeException(e);
         }
     }
