@@ -8,12 +8,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import ua.com.homebudget.dto.ChangePasswordRequest;
 import ua.com.homebudget.dto.UserRequest;
 import ua.com.homebudget.dto.templates.EmailTemplateCommon;
 import ua.com.homebudget.dto.templates.ResetPasswordTemplate;
 import ua.com.homebudget.email.EmailSenderImpl;
 import ua.com.homebudget.exception.UserServiceException;
 import ua.com.homebudget.model.User;
+import ua.com.homebudget.repository.ChangePasswordRequestRepository;
 import ua.com.homebudget.repository.RoleRepository;
 import ua.com.homebudget.repository.UserRepository;
 import ua.com.homebudget.service.MessageService;
@@ -33,6 +35,9 @@ public class UserServiceDefault implements UserService {
 
     @Autowired
     EmailSenderImpl emailSenderImpl;
+    
+    @Autowired
+    ChangePasswordRequestRepository changePasswordRequestRepository;
 
 
     public List<User> getUsers() {
@@ -96,13 +101,15 @@ public class UserServiceDefault implements UserService {
 
     @Override
     public void sendPasswordRequestEmail(String email) {
-         final Integer TOKEN_LIFE_TIME_IN_HOURS = 4;
+         final Integer TOKEN_LIFE_TIME_IN_HOURS = 
+                 changePasswordRequestRepository.TOKEN_LIFE_TIME_IN_HOURS;
          final String SUBJECT = "HomeBudget: Password Recovery Request";
          final String TEMPLATE_NAME = "password-recovery";
          
+         User user = getUser(email);
          EmailTemplateCommon templateInfo = new ResetPasswordTemplate();
          templateInfo.setSubject(SUBJECT);
-         templateInfo.setTo(email);
+         templateInfo.setTo(user.getEmail());
          templateInfo.setTemplateName(TEMPLATE_NAME);
          templateInfo.setParameter("tokenLifeTime", TOKEN_LIFE_TIME_IN_HOURS);
          templateInfo.setParameter("recoveryLink", generateRecoveryLink(email));
@@ -110,12 +117,18 @@ public class UserServiceDefault implements UserService {
          emailSenderImpl.send(templateInfo, Locale.getDefault());
     }
 
-    // TODO implement password recovery token generation
-    private Object generateRecoveryLink(String currentUser) {
-        // TODO Auto-generated method stub
-        return "TODO";
+    @Override
+    public void changePassword(ChangePasswordRequest request) {
+        String email = changePasswordRequestRepository.checkTokenValidityAndGetEmail(request.getTokenHash());
+        User user = getUser(email);
+        user.setPassword(request.getNewPassword());
+        userRepository.save(user);
     }
     
+    private String generateRecoveryLink(String email) {
+        return changePasswordRequestRepository.issueToken(email);
+    }
+
     
 
 }

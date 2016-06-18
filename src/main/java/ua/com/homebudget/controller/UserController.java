@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import ua.com.homebudget.dto.ChangePasswordRequest;
+import ua.com.homebudget.dto.ResetPasswordRequest;
 import ua.com.homebudget.dto.UserRequest;
 import ua.com.homebudget.dto.sequences.user.GroupUser;
 import ua.com.homebudget.exception.UserServiceException;
@@ -58,7 +60,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
-    public void resetPassword(@RequestBody String email){
-        userService.sendPasswordRequestEmail(email);
+    public void resetPassword(@RequestBody ResetPasswordRequest request){
+        userService.sendPasswordRequestEmail(request.getEmail());
+    }
+
+    @RequestMapping(value = "/changePassword", method = RequestMethod.POST)
+    public void changePassword(@RequestBody ChangePasswordRequest request){
+        userService.changePassword(request);
     }
 }

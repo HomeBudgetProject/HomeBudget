@@ -2,6 +2,7 @@ package ua.com.homebudget.service;
 
 import java.util.List;
 
+import ua.com.homebudget.dto.ChangePasswordRequest;
 import ua.com.homebudget.dto.UserRequest;
 import ua.com.homebudget.model.User;
 
@@ -14,5 +15,6 @@ public interface UserService {
     void deleteUser(int id);
     String getCurrentUser();
     void sendPasswordRequestEmail(String email);
+    void changePassword(ChangePasswordRequest request);
 
 }

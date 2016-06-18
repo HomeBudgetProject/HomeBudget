@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.BeanNameViewResolver;
+
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import ua.com.homebudget.dto.templates.EmailTemplateCommon;
 import ua.com.homebudget.dto.templates.ResetPasswordTemplate;
 
