@@ -100,10 +100,10 @@ public class UserServiceDefault implements UserService {
     }
 
     @Override
-    public void sendPasswordRequestEmail(String email) {
+    public void sendPasswordRequestEmail(String email, String baseUrl) {
          final Integer TOKEN_LIFE_TIME_IN_HOURS = 
-                 changePasswordRequestRepository.TOKEN_LIFE_TIME_IN_HOURS;
-         final String SUBJECT = "HomeBudget: Password Recovery Request";
+                 ChangePasswordRequestRepository.TOKEN_LIFE_TIME_IN_HOURS;
+         final String SUBJECT = "Homebudget: password recovery request";
          final String TEMPLATE_NAME = "password-recovery";
          
          User user = getUser(email);
@@ -113,6 +113,7 @@ public class UserServiceDefault implements UserService {
          templateInfo.setTemplateName(TEMPLATE_NAME);
          templateInfo.setParameter("tokenLifeTime", TOKEN_LIFE_TIME_IN_HOURS);
          templateInfo.setParameter("recoveryLink", generateRecoveryLink(email));
+         templateInfo.setParameter("baseUrl", baseUrl);
          
          emailSenderImpl.send(templateInfo, Locale.getDefault());
     }

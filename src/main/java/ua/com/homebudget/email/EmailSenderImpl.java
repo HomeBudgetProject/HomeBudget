@@ -1,18 +1,15 @@
 package ua.com.homebudget.email;
 
 import java.util.Locale;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
@@ -50,6 +47,7 @@ public class EmailSenderImpl implements EmailSender {
             }
             
             final String htmlContent = this.templateEngine.process(template.getTemplateName(), ctx);
+            log.trace("Generated email content: {}", htmlContent);
             message.setText(htmlContent, "utf-8", "html");
 
             javaMailSender.send(message);

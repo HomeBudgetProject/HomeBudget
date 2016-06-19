@@ -261,7 +261,7 @@ public class UserServiceTest extends DblIntegrationTest {
     @Ignore
     public void testSendPasswordRequestEmail() {
         String email = "qwe@asd.zxc";
-        userService.sendPasswordRequestEmail(email);
+        userService.sendPasswordRequestEmail(email, "http://localhost:8080/");
     }
 
 }

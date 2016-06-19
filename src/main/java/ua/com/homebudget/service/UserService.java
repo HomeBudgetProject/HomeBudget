@@ -14,7 +14,7 @@ public interface UserService {
     void deleteUser(String email);
     void deleteUser(int id);
     String getCurrentUser();
-    void sendPasswordRequestEmail(String email);
+    void sendPasswordRequestEmail(String email, String baseUrl);
     void changePassword(ChangePasswordRequest request);
 
 }

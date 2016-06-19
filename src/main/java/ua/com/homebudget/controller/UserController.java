@@ -2,6 +2,8 @@ package ua.com.homebudget.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -60,8 +62,14 @@ public class UserController {
     }
 
     @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
-    public void resetPassword(@RequestBody ResetPasswordRequest request){
-        userService.sendPasswordRequestEmail(request.getEmail());
+    public void resetPassword(@RequestBody ResetPasswordRequest email, HttpServletRequest request){
+
+        StringBuffer url = request.getRequestURL();
+        String uri = request.getRequestURI();
+        String ctx = request.getContextPath();
+        String baseUrl = url.substring(0, url.length() - uri.length() + ctx.length()) + "/";
+
+        userService.sendPasswordRequestEmail(email.getEmail(), baseUrl);
     }
 
     @RequestMapping(value = "/changePassword", method = RequestMethod.POST)
