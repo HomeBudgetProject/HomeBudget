@@ -20,6 +20,11 @@
                 templateUrl: "templates/register/register.tpl.html",
                 controller: "RegisterController"
             }).
+            when("/reset/change-password/:token", {
+                title: 'Change Password',
+                templateUrl: "templates/changePassword/changePassword.tpl.html",
+                controller: "ChangePasswordController"
+            }).
             when("/reset", {
                 title: 'Password Reset',
                 templateUrl: "templates/reset/reset.tpl.html",
