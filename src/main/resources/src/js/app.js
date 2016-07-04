@@ -22,12 +22,20 @@
             }).
             when("/reset/change-password/:token", {
                 title: 'Change Password',
-                templateUrl: "templates/changePassword/changePassword.tpl.html",
+                templateUrl: "templates/reset/changePassword/changePassword.tpl.html",
                 controller: "ChangePasswordController"
+            }).
+            when("/reset/recovery-error", {
+                title: 'Password Recovery Error',
+                templateUrl: "templates/reset/recoveryError/recoveryError.tpl.html"
+            }).
+            when("/reset/confirm-reset", {
+                title: 'Forgotten Password Request',
+                templateUrl: "templates/reset/confirmPassword/confirmPassword.tpl.html"
             }).
             when("/reset", {
                 title: 'Password Reset',
-                templateUrl: "templates/reset/reset.tpl.html",
+                templateUrl: "templates/reset/request/reset.tpl.html",
                 controller: "ResetController"
             }).
             when("/transaction", {

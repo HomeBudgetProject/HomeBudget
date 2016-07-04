@@ -74,10 +74,31 @@ module.exports = function(grunt) {
                 tasks: ['sass', 'concat','concat_css', 'copy'],
                 options: {
                     spawn: false,
-                    event: ['added', 'deleted', 'changed']
-                },
+                    event: ['added', 'deleted', 'changed'],
+                }
+           }
+        },
+
+        connect: {
+          all: {
+            options:{
+              port: 9000,
+              hostname: "localhost",
+              keepalive: false,
+              base: '../static/'
             }
+          }
+        },
+
+        open: {
+          all: {
+            path: 'http://localhost:9000'
+          }
         }
+    });
+
+    grunt.event.on('watch', function(action, filepath, target) {
+      grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -86,8 +107,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-spritesmith');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-concat-css');
+    grunt.loadNpmTasks('grunt-open');
+    grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('default', ['jshint', 'sprite', 'sass', 'concat', 'copy', 'concat_css']);
-    grunt.registerTask('dev', ['jshint', 'sprite', 'sass', 'concat', 'copy', 'concat_css','watch']);
+    grunt.registerTask('dev', ['jshint', 'sprite', 'sass', 'concat', 'copy', 'concat_css','open','connect','watch']);
 };
