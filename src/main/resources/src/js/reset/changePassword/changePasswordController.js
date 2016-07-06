@@ -1,9 +1,11 @@
 angular.module('homebudgetApp').controller('ChangePasswordController', ['$scope', '$http', '$location', '$route', '$routeParams', 
 	function($scope, $http, $location, $route, $routeParams){
+
+	    var that = this;
+
 	    $scope.submit = function() {
-	        var that = this;
 	        var payload = {newPassword: $scope.resetform.password.$modelValue, tokenHash: $routeParams.token};
-	        console.log(payload);
+	
 	        var resp = $http({
 	            url: '/api/users/changePassword',
 	            method: "POST",

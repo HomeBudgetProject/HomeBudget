@@ -1,8 +1,9 @@
 angular.module('homebudgetApp').controller('ResetController', ['$scope', '$http', '$location', '$route',
     function($scope, $http, $location, $route){
-        //console.log(ResetController);	    
+
+        var that = this;
+
         $scope.submit = function() {
-            var that = this;
             var payload = { email: $scope.resetform.email.$modelValue };
             console.log(payload);
             var resp = $http({
