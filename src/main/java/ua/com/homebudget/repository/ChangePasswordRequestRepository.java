@@ -92,10 +92,7 @@ public class ChangePasswordRequestRepository {
         try {
             MessageDigest m = MessageDigest.getInstance("SHA-256");
             m.update(messageToSign.getBytes(), 0, messageToSign.length());
-            digest = URLEncoder.encode(new String(Base64.encode(m.digest())), "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            log.error("Failed to encode digest: ", e);
-            throw new RuntimeException(e);
+            digest = byteArrayToHex(m.digest());
         } catch (NoSuchAlgorithmException e) {
             log.error("Failed to generate digest: ", e);
             throw new RuntimeException(e);
@@ -104,6 +101,13 @@ public class ChangePasswordRequestRepository {
         log.debug("Generated digest for token {} is {}", token, digest);
         return digest;
     }
+    
+    private String byteArrayToHex(byte[] a) {
+        StringBuilder sb = new StringBuilder(a.length * 2);
+        for(byte b: a)
+           sb.append(String.format("%02x", b & 0xff));
+        return sb.toString();
+     }    
 
     public void purgeToken(String digest) {
         if (digest != null && container.containsKey(digest)) {
