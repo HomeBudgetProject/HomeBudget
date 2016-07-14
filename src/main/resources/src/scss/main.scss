@@ -265,3 +265,38 @@ input.ng-invalid:focus {
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
             box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
 }
+
+.capitalize {text-transform:capitalize;}
+
+
+/* ==========================================================================
+Social button
+========================================================================== */
+.hb-btn-social {
+    margin-bottom: 5px;
+}
+
+
+.hb-btn-google {
+    background-color: #dd4b39;
+    border-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
+}
+
+.hb-btn-google:hover, .hb-btn-google:focus, .hb-btn-google:active, .hb-btn-google.active, .open > .dropdown-toggle.hb-btn-google {
+    background-color: #c23321;
+    border-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
+}
+
+.hb-btn-facebook {
+    background-color: #3b5998;
+    border-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
+}
+
+.hb-btn-facebook:hover, .hb-btn-facebook:focus, .hb-btn-facebook:active, .hb-btn-facebook.active, .open > .dropdown-toggle.hb-btn-facebook {
+    background-color: #2d4373;
+    border-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
+}

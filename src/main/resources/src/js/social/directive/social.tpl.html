@@ -1,0 +1,8 @@
+
+<form action="{{ providerURL }}" method="POST">
+    <button type="submit" class="btn btn-block hb-btn-social hb-btn-{{ provider }}">
+        <span translate="social.btnLabel" translate-values="{ label: label }">Sign in with <span class="capitalize">{{ label }}</span></span>
+    </button>
+    <input name="scope" type="hidden" value="{{ providerSetting }}"/>
+    <input name="_csrf" type="hidden" value="{{ csrf }}"/>
+</form>

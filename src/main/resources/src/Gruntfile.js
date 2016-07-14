@@ -30,7 +30,11 @@ module.exports = function(grunt) {
         },
         concat: {
             dist: {
-                src: ['bower_components/angular/angular.min.js', 'bower_components/angular-route/angular-route.min.js', 'bower_components/angular-messages/angular-messages.min.js', 'js/**/*js'],
+                src: ['bower_components/angular/angular.min.js', 
+                      'bower_components/angular-route/angular-route.min.js', 
+                      'bower_components/angular-messages/angular-messages.min.js', 
+                      'bower_components/angular-translate/angular-translate.min.js', 
+                      'js/**/*js'],
                 dest: '../static/js/app.js'
             }
         },
@@ -59,6 +63,11 @@ module.exports = function(grunt) {
                     src: '*.html',
                     dest: '../static/',
                     expand: true
+                }, {
+                    cwd: 'l10n/',
+                    src: '*.json',
+                    dest: '../static/l10n',
+                    expand: true
                 }]
             }
         },
@@ -70,7 +79,7 @@ module.exports = function(grunt) {
         },
         watch: {
             scripts: {
-                files: ['js/**/*.js','js/**/*.tpl.html','html/*.js','scss/main.scss'],
+                files: ['js/**/*.js','js/**/*.tpl.html','html/*.js','scss/main.scss','l10n/*.json'],
                 tasks: ['sass', 'concat','concat_css', 'copy'],
                 options: {
                     spawn: false,

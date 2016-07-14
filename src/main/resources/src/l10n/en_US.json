@@ -1,0 +1,7 @@
+{
+  "header" : {
+    "REGISTER" : "Register",
+    "LOGIN" : "Login",
+    "TRANSACTIONS" : "Transactions"
+  }
+}

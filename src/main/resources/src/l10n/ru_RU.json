@@ -1,0 +1,7 @@
+{
+  "header" : {
+    "REGISTER" : "Регистрация",
+    "LOGIN" : "Вход",
+    "TRANSACTIONS" : "Транзакции"
+  }
+}

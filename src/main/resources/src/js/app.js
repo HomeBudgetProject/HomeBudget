@@ -1,6 +1,7 @@
 (function() {
     'use strict';
-    var app = angular.module("homebudgetApp", ['ngRoute', 'ngMessages']);
+    var app = angular.module("homebudgetApp", ['ngRoute', 'ngMessages', 'pascalprecht.translate']);
+    
     app.config(['$routeProvider',
         function($routeProvider) {
             // $locationProvider.html5Mode(true);
@@ -48,6 +49,16 @@
             });
         }
     ]);
+
+    app.config(['$translateProvider', function ($translateProvider) {
+        $translateProvider.useStaticFilesLoader({
+            prefix: 'l10n/',
+            suffix: '.json'
+        });
+
+        $translateProvider.preferredLanguage('ru_RU');
+    }]);
+
 
 app.run(['$rootScope', function($rootScope) {
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {

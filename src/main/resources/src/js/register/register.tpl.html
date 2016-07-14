@@ -28,9 +28,24 @@
             </div>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 ">
-                    <input type="submit" value="Register" ng-disabled="registerform.$invalid || registerform.email.$pristine || registerform.password.$pristine" class="btn btn-primary btn-lg btn-block center-block pad-btn btn-height" />
+                    <input type="submit" value="Register" ng-disabled="registerform.$invalid || registerform.email.$pristine || registerform.password.$pristine" class="btn btn-primary btn-lg btn-block center-block" />
                 </div>
-                
             </div>
         </form>
+
+        <div class="row">
+	    <br/>
+            <div class="col-md-4 col-md-offset-4 ">
+		<p class="text-center"><strong>OR</strong></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-md-offset-4 ">
+                <hb-social ng-provider="facebook"></jh-social>
+            </div>
+            <div class="col-md-2 ">
+                <hb-social ng-provider="google"></jh-social>
+            </div>
+            </div>
+        </div>
     </div>
