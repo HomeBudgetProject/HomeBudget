@@ -103,6 +103,12 @@ module.exports = function(grunt) {
           all: {
             path: 'http://localhost:9000'
           }
+        },
+
+        jsonlint: {
+            sample: {
+                src: [ 'l10n/*.json' ]
+            }
         }
     });
 
@@ -119,7 +125,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-open');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-jsonlint');
 
-    grunt.registerTask('default', ['jshint', 'sprite', 'sass', 'concat', 'copy', 'concat_css']);
-    grunt.registerTask('dev', ['jshint', 'sprite', 'sass', 'concat', 'copy', 'concat_css','open','connect','watch']);
+
+    grunt.registerTask('default', ['jshint', 'jsonlint', 'sprite', 'sass', 'concat', 'copy', 'concat_css']);
+    grunt.registerTask('dev', ['jshint', 'jsonlint', 'sprite', 'sass', 'concat', 'copy', 'concat_css','open','connect','watch']);
 };

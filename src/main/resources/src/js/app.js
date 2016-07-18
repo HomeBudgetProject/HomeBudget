@@ -7,9 +7,7 @@
             // $locationProvider.html5Mode(true);
             $routeProvider.
             when("/", {
-                title: 'Homebudget',
-                templateUrl: "templates/index/index.tpl.html",
-                controller: "IndexPageController"
+                title: 'Homebudget'
             }).
             when("/login", {
                 title: 'Login',
@@ -56,7 +54,7 @@
             suffix: '.json'
         });
 
-        $translateProvider.preferredLanguage('ru_RU');
+        $translateProvider.use('en_US');
     }]);
 
 

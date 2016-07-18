@@ -1,7 +1,28 @@
 {
+  "lang": [
+    {"code" : "en_US", "name" : "Английский"},
+    {"code" : "ru_RU", "name" : "Русский"}
+  ],
   "header" : {
     "REGISTER" : "Регистрация",
     "LOGIN" : "Вход",
     "TRANSACTIONS" : "Транзакции"
+  },
+  "login" : {
+    "form" : {
+        "email" : "Адрес электронной почты", 
+        "password" : "Пароль",
+        "submit" : "Войти" 
+     },
+    "forgot_password_link" : "Забыли пароль?", 
+    "alternative_login" : "Или войти с помощью", 
+    "validation" : {
+        "email_required" : "Введите Email",
+        "email_regexp" : "Введены некорректные данные",
+        "email_length" : "Email должен содержать от 6 до 60 символов",
+        "password_required" : "Введите пароль",
+        "password_regexp" : "Введены некорректные данные",
+        "email_length" : "Пароль должен содержать от 6 до 100 символов"
+     }
   }
 }

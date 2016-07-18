@@ -1,5 +1,5 @@
-angular.module('homebudgetApp').controller("LoginController", ['$scope', '$http', '$location', '$route',
-    function($scope, $http, $location) {
+angular.module('homebudgetApp').controller("LoginController", ['$scope', '$http', '$location', '$route', '$filter',
+    function($scope, $http, $location, $route, $filter) {
         var that = this;
         $scope.submit = function() {
             var resp = $http({

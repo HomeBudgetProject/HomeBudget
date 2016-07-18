@@ -1,7 +1,28 @@
 {
+  "lang": [
+    {"code" : "en_US", "name" : "English"},
+    {"code" : "ru_RU", "name" : "Russian"}
+  ],
   "header" : {
     "REGISTER" : "Register",
     "LOGIN" : "Login",
     "TRANSACTIONS" : "Transactions"
+  },
+  "login" : {
+    "form" : {
+        "email" : "Email Address", 
+        "password" : "Password",
+        "submit" : "Log In" 
+     },
+    "forgot_password_link" : "Forgot password?", 
+    "alternative_login" : "or login with", 
+    "validation" : {
+        "email_required" : "Email Required",
+        "email_regexp" : "Invalid Email",
+        "email_length" : "Email length should be berween 6 and 60 symbols",
+        "password_required" : "Password Required",
+        "password_regexp" : "Invalid Password",
+        "email_length" : "Password length should be berween 6 and 100 symbols"
+     }
   }
 }
