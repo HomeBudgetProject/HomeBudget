@@ -3,10 +3,12 @@
     {"code" : "en_US", "name" : "Английский"},
     {"code" : "ru_RU", "name" : "Русский"}
   ],
-  "header" : {
-    "REGISTER" : "Регистрация",
-    "LOGIN" : "Вход",
-    "TRANSACTIONS" : "Транзакции"
+  "menu" : {
+    "register" : "Регистрация",
+    "login" : "Вход",
+    "transactions" : "Транзакции",
+    "statistics" : "Статистика",
+    "settings" : "Настройки"
   },
   "login" : {
     "form" : {
@@ -22,7 +24,28 @@
         "email_length" : "Email должен содержать от 6 до 60 символов",
         "password_required" : "Введите пароль",
         "password_regexp" : "Введены некорректные данные",
-        "email_length" : "Пароль должен содержать от 6 до 100 символов"
+        "password_length" : "Пароль должен содержать от 6 до 100 символов"
      }
+  },
+  "register" : {
+    "form" : {
+        "email" : "Адрес электронной почты", 
+        "password" : "Пароль",
+        "submit" : "Регистрация" 
+     },
+    "alternative_login" : "Или войти с помощью", 
+    "validation" : {
+        "email_required" : "Введите Email",
+        "email_regexp" : "Введены некорректные данные",
+        "email_length" : "Email должен содержать от 6 до 60 символов",
+        "password_required" : "Введите пароль",
+        "password_regexp" : "Введены некорректные данные",
+        "password_length" : "Пароль должен содержать от 6 до 100 символов"
+     }
+  },
+  "transaction" : {
+    "today" : "Сегодня", 
+    "add" : "Добавить", 
+    "description_placeholder" : "Примечание" 
   }
 }

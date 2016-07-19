@@ -1,8 +1,8 @@
 <nav class="navbar navbar-default __index--nav" ng-controller="IndexPageController as ctrl">
     <ul class="nav navbar-nav ">
-        <li><a translate="header.REGISTER" href="#/register">Register</a></li>
-        <li><a translate="header.LOGIN" href="#/login">Login</a></li>
-        <li><a translate="header.TRANSACTIONS" href="#/transaction">Transaction</a></li>
+        <li><a translate="menu.register" href="#/register">Register</a></li>
+        <li><a translate="menu.login" href="#/login">Login</a></li>
+        <li><a translate="menu.transactions" href="#/transaction">Transaction</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><select class="form-control" ng-options='t.name for t in lang' ng-model="activeLang" ng-change='useLang()'></select></li>

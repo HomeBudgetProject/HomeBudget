@@ -3,10 +3,12 @@
     {"code" : "en_US", "name" : "English"},
     {"code" : "ru_RU", "name" : "Russian"}
   ],
-  "header" : {
-    "REGISTER" : "Register",
-    "LOGIN" : "Login",
-    "TRANSACTIONS" : "Transactions"
+  "menu" : {
+    "register" : "Register",
+    "login" : "Login",
+    "transactions" : "Transactions",
+    "statistics" : "Statistics",
+    "settings" : "Settings"
   },
   "login" : {
     "form" : {
@@ -22,7 +24,29 @@
         "email_length" : "Email length should be berween 6 and 60 symbols",
         "password_required" : "Password Required",
         "password_regexp" : "Invalid Password",
-        "email_length" : "Password length should be berween 6 and 100 symbols"
+        "password_length" : "Password length should be berween 6 and 100 symbols"
      }
+  },
+  "register" : {
+    "form" : {
+        "email" : "Email Address", 
+        "password" : "Password",
+        "submit" : "Register" 
+     },
+    "forgot_password_link" : "Forgot password?", 
+    "alternative_login" : "or login with", 
+    "validation" : {
+        "email_required" : "Email Required",
+        "email_regexp" : "Invalid Email",
+        "email_length" : "Email length should be berween 6 and 60 symbols",
+        "password_required" : "Password Required",
+        "password_regexp" : "Invalid Password",
+        "password_length" : "Password length should be berween 6 and 100 symbols"
+     }
+  },
+  "transaction" : {
+    "today" : "Today", 
+    "add" : "Add", 
+    "description_placeholder" : "Please, leave a message" 
   }
 }

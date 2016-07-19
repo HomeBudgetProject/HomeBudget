@@ -12,20 +12,20 @@
                 <div class="menu">
                     <ul class="nav nav-pills nav-stacked">
                         <li role="presentation" class="menu__item">
-                            <a href="#"><i class="menu__icon menu__icon_transactions"></i>Transactions</a>
+                            <a href="#"><i class="menu__icon menu__icon_transactions"></i><span translate="menu.transactions"></span></a>
                         </li>
                         <li role="presentation" class="menu__item">
-                            <a href="#"><i class="menu__icon menu__icon_statistics"></i>Statistics</a>
+                            <a href="#"><i class="menu__icon menu__icon_statistics"></i><span translate="menu.statistics"></span></a>
                         </li>
                         <li role="presentation" class="menu__item">
-                            <a href="#"><i class="menu__icon menu__icon_settings"></i>Settings</a>
+                            <a href="#"><i class="menu__icon menu__icon_settings"></i><span translate="menu.settings"></span></a>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="col-xs-8 b-main">
                 <form class="transaction" name="transaction" method="POST">
-                    <div class="transaction__header"><h2>Transactions</h2></div>
+                    <div class="transaction__header"><h2 translate="menu.transactions"></h2></div>
                     <div class="wrapper">
                         <div class="transaction__sum">
                             <fieldset>
@@ -38,12 +38,12 @@
                         </div>
                         <div class="transaction__additional"></div>
                         <div class="transaction__calendar">
-                            <button class="btn btn-info">Today</button>
+                            <button class="btn btn-info" translate="transaction.today">Today</button>
                         </div>
                     </div>
                     <div class="transaction__info">
-                        <textarea name="description" id="transactionDescription" cols="30" rows="10" placeholder="Please, leave a message"></textarea>
-                        <button class="btn btn-success">Add</button>
+                        <textarea name="description" id="transactionDescription" cols="30" rows="10" translate translate-attr-placeholder="transaction.description_placeholder" placeholder="Please, leave a message"></textarea>
+                        <button class="btn btn-success" translate="transaction.add">Add</button>
                     </div>
                 </form>
             </div>

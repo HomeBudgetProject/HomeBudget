@@ -7,20 +7,20 @@
             <div class="row pad-form">
                 <div class=" col-md-4 col-md-offset-4  ">
                     <div class="form-group ">
-                        <input class=" form-control input-lg " name="email" type="text" placeholder="user@company.com" validateEmail  ng-model="userata.email" />
+                        <input class=" form-control input-lg " name="email" type="text" translate translate-attr-placeholder="register.form.email" placeholder="Email Address" validateEmail  ng-model="userata.email" />
                     </div>
                     <ng-messages for="registerform.email.$error" role="alert">
-                            <div class="alert alert-danger" ng-message="required">Введите Email</div>
-                            <div class="alert alert-danger" ng-message="regexp">Введены некорректные данные</div>
-                            <div class="alert alert-danger" ng-message="emaillength">Email должен содержать от 6 до 60 символов</div>
+                            <div class="alert alert-danger" ng-message="required"><span translate="register.validation.email_required"></span></div>
+                            <div class="alert alert-danger" ng-message="regexp"><span translate="register.validation.email_regexp"></span></div>
+                            <div class="alert alert-danger" ng-message="emaillength"><span translate="register.validation.email_length"></span></div>
                     </ng-messages>
                     <div class="form-group">
-                        <input class="form-control input-lg" name="password" type="password" placeholder="Введите пароль" validatePassword ng-model="userdata.password">
+                        <input class="form-control input-lg" name="password" type="password" translate translate-attr-placeholder="register.form.password"  placeholder="Enter Password" validatePassword ng-model="userdata.password">
                     </div>
                     <ng-messages for="registerform.password.$error" role="alert">
-                            <div class="alert alert-danger" ng-message="required">Введите пароль</div>
-                            <div class="alert alert-danger" ng-message="regexp">Введены некорректные данные</div>
-                            <div class="alert alert-danger" ng-message="passwordlength">Пароль должен содержать от 6 до 100 символов</div>
+                            <div class="alert alert-danger" ng-message="required"><span translate="register.validation.password_required"></span></div>
+                            <div class="alert alert-danger" ng-message="regexp"><span translate="register.validation.password_regexp"></span></div>
+                            <div class="alert alert-danger" ng-message="passwordlength"><span translate="register.validation.password_length"></span></div>
                     </ng-messages>
                     <div ng-if="ctrl.error" class="alert alert-danger"> {{ctrl.message}}</div>
                     <div ng-if="!ctrl.error && ctrl.error !== undefined" class="alert alert-info"> {{ctrl.message}}</div> 
@@ -28,7 +28,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 ">
-                    <input type="submit" value="Register" ng-disabled="registerform.$invalid || registerform.email.$pristine || registerform.password.$pristine" class="btn btn-primary btn-lg btn-block center-block" />
+                    <input type="submit" translate translate-attr-value="register.form.submit" value="Register" ng-disabled="registerform.$invalid || registerform.email.$pristine || registerform.password.$pristine" class="btn btn-primary btn-lg btn-block center-block" />
                 </div>
             </div>
         </form>
@@ -36,7 +36,8 @@
         <div class="row">
 	    <br/>
             <div class="col-md-4 col-md-offset-4 ">
-		<p class="text-center"><strong>OR</strong></p>
+                <hr/>
+                <p class="text-center" translate="register.alternative_login">or connect with</p>
             </div>
         </div>
         <div class="row">
