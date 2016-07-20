@@ -6,15 +6,15 @@
             <div class="row pad-form">
                 <div class=" col-md-4 col-md-offset-4 text-center">
                     <div class="form-group">
-                        <label class="h2">Reset password</label>
+                        <label class="h2" translate="reset.reset_request_header">Reset password</label>
                     </div>
                     <div class="form-group">
-                        <input class="form-control input-lg " type="text" name="email" ng-model="userdata.email" validateEmail placeholder="Email Address">
+                        <input class="form-control input-lg " type="text" name="email" ng-model="userdata.email" validateEmail translate translate-attr-placeholder="reset.form.email" placeholder="Email Address">
                     </div>
                     <ng-messages for="resetform.email.$error" role="alert">
-                            <div class="alert alert-danger" ng-message="required">Введите Email</div>
-                            <div class="alert alert-danger" ng-message="regexp">Введены некорректные данные</div>
-                            <div class="alert alert-danger" ng-message="emaillength">Email должен содержать от 6 до 60 символов</div>
+                            <div class="alert alert-danger" ng-message="required"><span translate="validation.email_required"></span></div>
+                            <div class="alert alert-danger" ng-message="regexp"><span translate="validation.email_regexp"></span></div>
+                            <div class="alert alert-danger" ng-message="emaillength"><span translate="validation.email_length"></span></div>
                     </ng-messages>
                     <div ng-if="ctrl.error" class="alert alert-danger"> {{ctrl.message}}</div>
                     <div ng-if="!ctrl.error && ctrl.error !== undefined" class="alert alert-info"> {{ctrl.message}}</div>                     
@@ -22,8 +22,8 @@
             </div>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
-                    <button type="submit" ng-disabled="resetform.$invalid || resetform.email.$pristine" 
-                      class="btn btn-primary btn-lg btn-block center-block btn-height">Reset password</button>
+                    <button type="submit" translate="reset.reset_request_submit" ng-disabled="resetform.$invalid || resetform.email.$pristine" 
+                      class="btn btn-primary btn-lg btn-block center-block btn-height"></button>
                 </div>
             </div>
         </form>

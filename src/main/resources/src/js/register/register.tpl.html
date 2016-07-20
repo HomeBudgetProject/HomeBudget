@@ -10,17 +10,17 @@
                         <input class=" form-control input-lg " name="email" type="text" translate translate-attr-placeholder="register.form.email" placeholder="Email Address" validateEmail  ng-model="userata.email" />
                     </div>
                     <ng-messages for="registerform.email.$error" role="alert">
-                            <div class="alert alert-danger" ng-message="required"><span translate="register.validation.email_required"></span></div>
-                            <div class="alert alert-danger" ng-message="regexp"><span translate="register.validation.email_regexp"></span></div>
-                            <div class="alert alert-danger" ng-message="emaillength"><span translate="register.validation.email_length"></span></div>
+                            <div class="alert alert-danger" ng-message="required"><span translate="validation.email_required"></span></div>
+                            <div class="alert alert-danger" ng-message="regexp"><span translate="validation.email_regexp"></span></div>
+                            <div class="alert alert-danger" ng-message="emaillength"><span translate="validation.email_length"></span></div>
                     </ng-messages>
                     <div class="form-group">
                         <input class="form-control input-lg" name="password" type="password" translate translate-attr-placeholder="register.form.password"  placeholder="Enter Password" validatePassword ng-model="userdata.password">
                     </div>
                     <ng-messages for="registerform.password.$error" role="alert">
-                            <div class="alert alert-danger" ng-message="required"><span translate="register.validation.password_required"></span></div>
-                            <div class="alert alert-danger" ng-message="regexp"><span translate="register.validation.password_regexp"></span></div>
-                            <div class="alert alert-danger" ng-message="passwordlength"><span translate="register.validation.password_length"></span></div>
+                            <div class="alert alert-danger" ng-message="required"><span translate="validation.password_required"></span></div>
+                            <div class="alert alert-danger" ng-message="regexp"><span translate="validation.password_regexp"></span></div>
+                            <div class="alert alert-danger" ng-message="passwordlength"><span translate="validation.password_length"></span></div>
                     </ng-messages>
                     <div ng-if="ctrl.error" class="alert alert-danger"> {{ctrl.message}}</div>
                     <div ng-if="!ctrl.error && ctrl.error !== undefined" class="alert alert-info"> {{ctrl.message}}</div> 

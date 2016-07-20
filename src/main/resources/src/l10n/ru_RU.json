@@ -17,15 +17,7 @@
         "submit" : "Войти" 
      },
     "forgot_password_link" : "Забыли пароль?", 
-    "alternative_login" : "Или войти с помощью", 
-    "validation" : {
-        "email_required" : "Введите Email",
-        "email_regexp" : "Введены некорректные данные",
-        "email_length" : "Email должен содержать от 6 до 60 символов",
-        "password_required" : "Введите пароль",
-        "password_regexp" : "Введены некорректные данные",
-        "password_length" : "Пароль должен содержать от 6 до 100 символов"
-     }
+    "alternative_login" : "Или войти с помощью" 
   },
   "register" : {
     "form" : {
@@ -33,15 +25,29 @@
         "password" : "Пароль",
         "submit" : "Регистрация" 
      },
-    "alternative_login" : "Или войти с помощью", 
-    "validation" : {
-        "email_required" : "Введите Email",
-        "email_regexp" : "Введены некорректные данные",
-        "email_length" : "Email должен содержать от 6 до 60 символов",
-        "password_required" : "Введите пароль",
-        "password_regexp" : "Введены некорректные данные",
-        "password_length" : "Пароль должен содержать от 6 до 100 символов"
-     }
+    "alternative_login" : "Или войти с помощью"
+  },
+  "validation" : {
+    "email_required" : "Введите Email",
+    "email_regexp" : "Введены некорректные данные",
+    "email_length" : "Email должен содержать от 6 до 60 символов",
+    "password_required" : "Введите пароль",
+    "password_regexp" : "Введены некорректные данные",
+    "password_length" : "Пароль должен содержать от 6 до 100 символов"
+   },
+  "reset" : {
+    "form" : {
+        "email" : "Адрес электронной почты", 
+        "password" : "Введите новый пароль"
+     },
+     "update_password_submit":"Установить пароль", 
+     "reset_request_header" : "Восстановить пароль",
+     "reset_request_submit" : "Восстановить пароль",
+     "recovery_error" : "Ошибка восстановления пароля",
+     "recovery_error_description" : "Не удалось извлечь информацию, нобходимую для восстановления пароля.",
+     "recovery_error_redo_link" : "Повторите попытку восставления еще раз.",
+     "email_request_confitmation" : "На Ваш адрес электронной почты были отправлены инструкции для восстановления пароля.",
+     "email_request_description" : "Проверьте Ваш почтовый ящик и перейдите по указанной в нем ссылке. Ссылка для восстановления пароля будет работать в течение следующих четырех часов."
   },
   "transaction" : {
     "today" : "Сегодня", 

@@ -17,15 +17,7 @@
         "submit" : "Log In" 
      },
     "forgot_password_link" : "Forgot password?", 
-    "alternative_login" : "or login with", 
-    "validation" : {
-        "email_required" : "Email Required",
-        "email_regexp" : "Invalid Email",
-        "email_length" : "Email length should be berween 6 and 60 symbols",
-        "password_required" : "Password Required",
-        "password_regexp" : "Invalid Password",
-        "password_length" : "Password length should be berween 6 and 100 symbols"
-     }
+    "alternative_login" : "or login with" 
   },
   "register" : {
     "form" : {
@@ -33,16 +25,29 @@
         "password" : "Password",
         "submit" : "Register" 
      },
-    "forgot_password_link" : "Forgot password?", 
-    "alternative_login" : "or login with", 
-    "validation" : {
-        "email_required" : "Email Required",
-        "email_regexp" : "Invalid Email",
-        "email_length" : "Email length should be berween 6 and 60 symbols",
-        "password_required" : "Password Required",
-        "password_regexp" : "Invalid Password",
-        "password_length" : "Password length should be berween 6 and 100 symbols"
-     }
+    "alternative_login" : "or login with" 
+  },
+  "validation" : {
+      "email_required" : "Email Required",
+      "email_regexp" : "Invalid Email",
+      "email_length" : "Email length should be berween 6 and 60 symbols",
+      "password_required" : "Password Required",
+      "password_regexp" : "Invalid Password",
+      "password_length" : "Password length should be berween 6 and 100 symbols"
+   },
+  "reset" : {
+    "form" : {
+        "email" : "Email Address", 
+        "password" : "Type new password"
+     },
+     "update_password_submit":"Update Password", 
+     "reset_request_header" : "Reset password",
+     "reset_request_submit" : "Reset password",
+     "recovery_error" : "Password Recovery Error",
+     "recovery_error_description" : "We cannot locate the information needed to recover your password.",
+     "recovery_error_redo_link" : "Please try again.",
+     "email_request_confitmation" : "We emailed you a link and instructions for updating your password.",
+     "email_request_description" : "Please check your email and click the link in the message. The link to update your password will work for next 4 hours."
   },
   "transaction" : {
     "today" : "Today", 
