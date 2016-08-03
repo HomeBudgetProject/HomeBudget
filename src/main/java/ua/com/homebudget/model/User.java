@@ -40,6 +40,9 @@ public class User implements Serializable {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "seed")
+    private String seed;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_role")
     private Role userRole;

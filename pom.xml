@@ -227,10 +227,10 @@
 				<configuration>
 					<user>${database.username}</user>
 					<schemas>
-						<schema>${database.schema.name}</schema>
+						<schema>public</schema>
 					</schemas>
 					<password>${database.password}</password>
-					<url>${database.url}</url>
+					<url>${database.url}${database.schema.name}</url>
 					<driver>${database.driver.classname}</driver>
 					<table>db_patch</table>
 					<placeholderPrefix>#[</placeholderPrefix>
@@ -238,7 +238,6 @@
 					<initVersion>1.0.0</initVersion>
 					<outOfOrder>true</outOfOrder>
 					<validateOnMigrate>false</validateOnMigrate>
-
 				</configuration>
 				<dependencies>
 					<dependency>
